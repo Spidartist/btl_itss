@@ -2,20 +2,18 @@ package views.screen;
 
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.List;
 
 import controller.BaseController;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.screen.home.HomeScreenHandler;
+import views.screen.login.LoginHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
 
 	private Scene scene;
 	private BaseScreenHandler prev;
 	protected final Stage stage;
-	protected HomeScreenHandler homeScreenHandler;
+	protected LoginHandler homeScreenHandler;
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
 
@@ -61,7 +59,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 		this.messages = messages;
 	}
 
-	public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
+	public void setHomeScreenHandler(LoginHandler HomeScreenHandler) {
 		this.homeScreenHandler = HomeScreenHandler;
 	}
 

@@ -14,7 +14,7 @@ public class FXMLScreenHandler {
 	protected BorderPane content;
 
 	public FXMLScreenHandler(String screenPath) throws IOException {
-		this.loader = new FXMLLoader(getClass().getResource(screenPath));
+		this.loader = new FXMLLoader(getClass().getClassLoader().getResource(screenPath));
 		// Set this class as the controller
 		this.loader.setController(this);
 		this.content = (BorderPane) loader.load();

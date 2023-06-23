@@ -2,8 +2,7 @@ package utils;
  // Store env vars
 public class Configs {
 
-	public Configs() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public static final String SPLASH_SCREEN_PATH = "views/fxml/splash.fxml";
+	public static final String LOGIN_PATH = "views/fxml/login.fxml";
+	
 }

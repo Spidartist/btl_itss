@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #171711;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="513.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loginImg" fitHeight="513.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/batsu-harem-1-jp.thumb_500x.jpg" />
+                  <Image url="@../../../assets/img/batsu-harem-1-jp.thumb_500x.jpg" />
                </image>
             </ImageView>
          </children>
@@ -26,9 +25,9 @@
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="318.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="95.0" fitWidth="112.0" layoutX="103.0" layoutY="22.0">
+            <ImageView fx:id="loginLock" fitHeight="95.0" fitWidth="112.0" layoutX="103.0" layoutY="22.0" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/678129.png" />
+                  <Image url="@../../../assets/img/678129.png" />
                </image>
             </ImageView>
             <Label layoutX="39.0" layoutY="156.0" text="Username" textFill="#f5c60b">
@@ -41,7 +40,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <PasswordField layoutX="148.0" layoutY="206.0" promptText="Password" />
+            <PasswordField fx:id="password" layoutX="148.0" layoutY="206.0" promptText="Password" />
             <Label fx:id="alertText" layoutX="145.0" layoutY="130.0" textFill="#f80808" />
             <Button fx:id="btnLogin" layoutX="123.0" layoutY="277.0" mnemonicParsing="false" style="-fx-background-color: #f5c60b;" text="Login">
                <font>
