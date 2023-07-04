@@ -1,5 +1,9 @@
 package entity.db;
 
+import static utils.Configs.DATABASE;
+import static utils.Configs.USERNAME;
+import static utils.Configs.PASSWORD;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -10,9 +14,7 @@ public class GymDB {
     public static Connection getConnection() {
         if (connect != null) return connect;
         try {
-			Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:assets/db/itss.db";
-            connect = DriverManager.getConnection(url);
+        	Connection connect = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             System.out.println("Connect database successfully");
         } catch (Exception e) {
         	System.out.println(e.getMessage());
