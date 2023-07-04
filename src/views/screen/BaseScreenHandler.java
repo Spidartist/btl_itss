@@ -6,14 +6,14 @@ import java.util.Hashtable;
 import controller.BaseController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.screen.login.LoginHandler;
+import views.screen.login.LoginScreenHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
 
 	private Scene scene;
 	private BaseScreenHandler prev;
 	protected final Stage stage;
-	protected LoginHandler homeScreenHandler;
+	protected LoginScreenHandler homeScreenHandler;
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
 
@@ -59,7 +59,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 		this.messages = messages;
 	}
 
-	public void setHomeScreenHandler(LoginHandler HomeScreenHandler) {
+	public void setHomeScreenHandler(LoginScreenHandler HomeScreenHandler) {
 		this.homeScreenHandler = HomeScreenHandler;
 	}
 
