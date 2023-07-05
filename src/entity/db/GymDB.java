@@ -6,6 +6,7 @@ import static utils.Configs.PASSWORD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class GymDB {
 
@@ -14,16 +15,19 @@ public class GymDB {
     public static Connection getConnection() {
         if (connect != null) return connect;
         try {
-        	Connection connect = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        	connect  = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             System.out.println("Connect database successfully");
-        } catch (Exception e) {
+        } catch (SQLException  e) {
         	System.out.println(e.getMessage());
-        } 
+        }
         return connect;
     }
     
 
     public static void main(String[] args) {
     	GymDB.getConnection();
+    	if (GymDB.connect == null) {
+    		System.out.println("dkmm");
+    	}
     }
 }

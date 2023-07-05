@@ -1,8 +1,8 @@
 package services;
 
-public class HoiVienService {
+public class GoiTapServices {
 
-	public HoiVienService() {
+	public GoiTapServices() {
 		// TODO Auto-generated constructor stub
 	}
 

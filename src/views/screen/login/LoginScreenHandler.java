@@ -1,10 +1,27 @@
 package views.screen.login;
 
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.prefs.Preferences;
+
+import entity.db.GymDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import services.Authentication;
+import utils.ViewUtils;
+
+import static utils.Utils.*;
+import static utils.Configs.*;
+import static entity.db.GymDB.*;
 
 public class LoginScreenHandler {
 	
@@ -18,8 +35,34 @@ public class LoginScreenHandler {
     private TextField inputUsername;
 
     @FXML
-    void handleLogin(ActionEvent event) {
+    public void handleLogin(ActionEvent event) throws SQLException, IOException {
+    	String username = inputUsername.getText();
+        String password = inputPassword.getText();
+        if (username.trim().equals("") || password.trim().equals("")) {
+            createDialog(
+                    Alert.AlertType.WARNING,
+                    "Cảnh báo!",
+                    "",
+                    "Vui lòng nhập đầy đủ username và password!"
+            );
+        }   else {
+        	ResultSet result = Authentication.authentication(username, password);
+            if (result.next()) {
+                Preferences userPreferences = Preferences.userRoot();
+                userPreferences.put("role", result.getString(6));
+                userPreferences.put("username", result.getString(2));
+                ViewUtils viewUtils = new ViewUtils();
+                viewUtils.changeScene(event, ADMIN_SCREEN_PATH);
+            } else {
+                createDialog(
+                        Alert.AlertType.ERROR,
+                        "Cảnh báo!",
+                        "",
+                        "Sai username hoặc password!"
+                );
+            }
 
+        }
     }
 
 	public LoginScreenHandler() {
