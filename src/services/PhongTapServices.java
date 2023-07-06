@@ -46,7 +46,7 @@ public class PhongTapServices {
     }
     
     public static int updatePhongTap(int ID, String tenPhongTap) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `phong_tap` SET `phong_tap`=? WHERE id = ?";
+		String UPDATE_QUERY = "UPDATE `phong_tap` SET `ten_phong`=? WHERE id = ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
 		preparedStatement.setString(1, tenPhongTap);
 		preparedStatement.setInt(2, ID);
