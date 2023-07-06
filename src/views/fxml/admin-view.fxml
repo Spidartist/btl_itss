@@ -15,14 +15,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
    <children>
       <HBox layoutX="-1.0">
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="190.0" stylesheets="@../styles/navigation-styles.css">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../styles/global.css">
+                  <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
                      <children>
                         <ImageView fitHeight="114.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -186,7 +187,7 @@
                               <NumberAxis side="LEFT" />
                            </yAxis>
                         </BarChart>
-                        <HBox layoutX="6.0" layoutY="48.0" prefHeight="111.0" prefWidth="789.0">
+                        <HBox layoutX="6.0" layoutY="64.0" prefHeight="111.0" prefWidth="789.0">
                            <children>
                               <Pane>
                                  <children>
@@ -320,6 +321,11 @@
                               <Line endX="50.0" startX="-50.0" stroke="#b9bdbf" />
                            </children>
                         </VBox>
+                        <Text layoutX="21.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trang chủ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </children>

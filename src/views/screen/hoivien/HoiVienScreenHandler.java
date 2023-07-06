@@ -1,22 +1,22 @@
 package views.screen.hoivien;
 
 
+import static utils.Configs.DETAIL_HOI_VIEN_VIEW_FXML;
+import static utils.Configs.HOI_VIEN_SCREEN_PATH;
+import static utils.Configs.ROWS_PER_PAGE;
+import static utils.Utils.createDialog;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import utils.ViewUtils;
-
-import static utils.Utils.*;
-
-import static utils.Configs.*;
 import entity.model.HoiVien;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.HoiVienServices;
+import utils.ViewUtils;
 
 public class HoiVienScreenHandler implements Initializable{
 
@@ -173,11 +174,6 @@ public class HoiVienScreenHandler implements Initializable{
     }
 
     @FXML
-    void search(MouseEvent event) {
-
-    }
-
-    @FXML
     void yeuCauUpdateMK(MouseEvent event) {
 
     }
@@ -235,4 +231,79 @@ public class HoiVienScreenHandler implements Initializable{
 		return tableView;
 
     }
+    
+    @FXML
+    public void search(MouseEvent event) {
+		FilteredList<HoiVien> filteredData = new FilteredList<>(hoiVienList, p -> true);
+		searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(person -> {
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				String lowerCaseFilter = searchTextField.getText().toLowerCase();
+				if (person.getHoTen().toLowerCase().contains(lowerCaseFilter)) {
+					return true;
+				} else {
+					return false;
+				}
+			});
+			int soDu = filteredData.size() % ROWS_PER_PAGE;
+			if (soDu != 0)
+				pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
+			else
+				pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
+			pagination.setMaxPageIndicatorCount(5);
+			pagination.setPageFactory(pageIndex -> {
+				indexColumn.setCellValueFactory(
+						(Callback<TableColumn.CellDataFeatures<HoiVien, HoiVien>, ObservableValue<HoiVien>>) p -> new ReadOnlyObjectWrapper(
+								p.getValue()));
+
+				indexColumn
+						.setCellFactory(new Callback<TableColumn<HoiVien, HoiVien>, TableCell<HoiVien, HoiVien>>() {
+							@Override
+							public TableCell<HoiVien, HoiVien> call(TableColumn<HoiVien, HoiVien> param) {
+								return new TableCell<HoiVien, HoiVien>() {
+									@Override
+									protected void updateItem(HoiVien item, boolean empty) {
+										super.updateItem(item, empty);
+
+										if (this.getTableRow() != null && item != null) {
+											setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+										} else {
+											setText("");
+										}
+									}
+								};
+							}
+						});
+				indexColumn.setSortable(false);
+				hoVaTenColumn.setCellValueFactory(new PropertyValueFactory<HoiVien, String>("hoTen"));
+				ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<HoiVien, String>("ngaySinh"));
+				gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<HoiVien, String>("gioiTinh"));
+				ngheNghiepColumn.setCellValueFactory(new PropertyValueFactory<HoiVien, String>("ngheNghiep"));
+				loaiThanhVienColumn.setCellValueFactory(new PropertyValueFactory<HoiVien, String>("loaiThanhVien"));
+				int lastIndex = 0;
+				int displace = filteredData.size() % ROWS_PER_PAGE;
+				if (displace > 0) {
+					lastIndex = filteredData.size() / ROWS_PER_PAGE;
+				} else {
+					lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
+				}
+				// Add nhankhau to table
+				if (filteredData.isEmpty())
+					tableView.setItems(FXCollections.observableArrayList(filteredData));
+				else {
+					if (lastIndex == pageIndex && displace > 0) {
+						tableView.setItems(FXCollections.observableArrayList(
+								filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+					} else {
+						tableView.setItems(FXCollections.observableArrayList(filteredData
+								.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+					}
+				}
+				return tableView;
+			});
+		});
+
+	}
 }

@@ -139,8 +139,48 @@ public class HoiVienDetailScreenHandler implements Initializable{
     }
 
     @FXML
-    void update(ActionEvent event) {
+    void update(ActionEvent event) throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+        if (ngaySinhDatePicker.getValue() == null) createDialog(
+                Alert.AlertType.WARNING,
+                "Thông báo",
+                "", "Vui lòng nhập đủ thông tin!");
+        else {
+            String hoVaTen = hoVaTenTextField.getText();
+            String ngaySinh = ngaySinhDatePicker.getValue().toString();
+            String gioiTinh = gioiTinhChoiceBox.getValue();
+            String loaiThanhVien = loaiThanhVienTextField.getText();
+            String ngheNghiep = ngheNghiepTextField.getText();
+            if (hoVaTen.trim().equals("") || ngaySinh.trim().equals("") || ngheNghiep.trim().equals("") ||
+                    ngheNghiep.trim().equals("")) {
 
+                createDialog(
+                        Alert.AlertType.WARNING,
+                        "Thông báo",
+                        "", "Vui lòng nhập đủ thông tin!");
+            } else {
+                    try {
+                        int result = HoiVienServices.updateHoiVien(ID, hoVaTen, ngaySinh, gioiTinh, loaiThanhVien, ngheNghiep);
+                        if (result == 1) {
+                            createDialog(
+                                    Alert.AlertType.CONFIRMATION,
+                                    "Thành công",
+                                    "", "Cập nhật thông tin hội viên thành công!"
+                            );
+                        } else {
+                            createDialog(
+                                    Alert.AlertType.ERROR,
+                                    "Thất bại",
+                                    "", "Có lỗi xảy ra, vui lòng thử lại!"
+                            );
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    viewUtils.switchToHoiVien(event);
+                
+            }
+        }
     }
 
 }

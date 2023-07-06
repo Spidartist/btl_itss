@@ -1,8 +1,5 @@
 package services;
 
-import static com.ktpm.constants.DBConstants.DATABASE;
-import static com.ktpm.constants.DBConstants.PASSWORD;
-import static com.ktpm.constants.DBConstants.USERNAME;
 import static utils.Utils.*;
 
 import java.sql.Connection;
@@ -54,6 +51,19 @@ public class HoiVienServices {
         preparedStatement.setInt(1, ID);
         return preparedStatement.executeUpdate();
     }
+    
+    public static int updateHoiVien(int ID, String hoVaTen, String ngaySinh, String gioiTinh, String loaiThanhVien, String ngheNghiep) throws SQLException {
+		String UPDATE_QUERY = "UPDATE `hoi_vien` SET `ho_ten`=?,`sinh_nhat`=?,`nghe_nghiep`=?,`gioi_tinh`=?,`loai_thanh_vien`=? WHERE id = ?";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
+		preparedStatement.setString(1, hoVaTen);
+		preparedStatement.setString(2, ngaySinh);
+		preparedStatement.setString(3, ngheNghiep);
+		preparedStatement.setString(4, gioiTinh);
+		preparedStatement.setString(5, loaiThanhVien);
+		preparedStatement.setInt(6, ID);
+		preparedStatement.execute();
+		return preparedStatement.executeUpdate();
+	}
 
 	public HoiVienServices() {
 		// TODO Auto-generated constructor stub

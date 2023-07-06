@@ -54,7 +54,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToCoSoVatChat();
+        controller.switchToPhongTap();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -68,7 +68,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToSoHoKhau();
+        controller.switchToNhanVien();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -82,7 +82,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToLichHoatDong();
+        controller.switchToThietBi();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -96,7 +96,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToLichHoatDong();
+        controller.switchToGoiTap();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -110,7 +110,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToLichHoatDong();
+        controller.switchToThuPhi();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

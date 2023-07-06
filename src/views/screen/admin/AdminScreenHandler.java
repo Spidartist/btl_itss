@@ -84,12 +84,12 @@ public class AdminScreenHandler implements Initializable{
     private Label usernameLabel;
 
     @FXML
-    public void switchToDangKiTaiKhoan() {
+    public void switchToDangKiTaiKhoan() throws IOException {
     	viewUtils.changeAnchorPane(basePane, DANG_KI_USER_SCREEN_PATH);
     }
 
     @FXML
-    public void switchToGoiTap() {
+    public void switchToGoiTap() throws IOException {
     	viewUtils.changeAnchorPane(basePane, GOI_TAP_SCREEN_PATH);
     }
 
@@ -99,32 +99,32 @@ public class AdminScreenHandler implements Initializable{
     }
 
     @FXML
-    public void switchToNhanVien() {
+    public void switchToNhanVien() throws IOException {
     	viewUtils.changeAnchorPane(basePane, NHAN_VIEN_SCREEN_PATH);
     }
 
     @FXML
-    public void switchToPhongTap() {
+    public void switchToPhongTap() throws IOException {
     	viewUtils.changeAnchorPane(basePane, PHONG_TAP_SCREEN_PATH);
     }
 
-    @FXML
-    void switchToThietBi(ActionEvent event) {
+    @FXML 
+    public void switchToThietBi() throws IOException {
     	viewUtils.changeAnchorPane(basePane, THIET_BI_SCREEN_PATH);
     }
 
     @FXML
-    void switchToThongKe(ActionEvent event) {
+    public void switchToThongKe() throws IOException {
     	viewUtils.changeAnchorPane(basePane, THONG_KE_SCREEN_PATH);
     }
 
     @FXML
-    void switchToThuPhi(ActionEvent event) {
+    public void switchToThuPhi() throws IOException {
     	viewUtils.changeAnchorPane(basePane, THU_PHI_SCREEN_PATH);
     }
 
     @FXML
-    void switchToTrangChu(ActionEvent event) throws IOException {
+    public void switchToTrangChu(ActionEvent event) throws IOException {
     	viewUtils.changeScene(event, ADMIN_SCREEN_PATH);
     }
 
@@ -168,11 +168,4 @@ public class AdminScreenHandler implements Initializable{
 		
 	}
 
-	public void switchToLichHoatDong() throws IOException {
-		viewUtils.changeAnchorPane(basePane, LICH_HOAT_DONG_VIEW_FXML);
-	}
-
-	public void switchToStatistic() throws IOException {
-		viewUtils.changeAnchorPane(basePane, THONG_KE_FXML);
-	}
 }

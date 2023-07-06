@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.hoivien.HoiVienScreenHandler">
    <children>
-      <Text layoutX="37.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hội viên" textAlignment="CENTER" wrappingWidth="140.9140625">
+      <Text layoutX="38.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hội viên" textAlignment="CENTER" wrappingWidth="140.9140625">
          <font>
             <Font name="Segoe UI" size="24.0" />
          </font>

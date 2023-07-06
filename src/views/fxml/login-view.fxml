@@ -35,7 +35,10 @@
                </font>
             </Text>
             <PasswordField fx:id="inputPassword" layoutX="72.0" layoutY="207.0" promptText="Password" />
-            <Button fx:id="buttonLogin" graphicTextGap="0.0" layoutX="71.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" prefWidth="152.0" styleClass="btn_primary" text="Đăng nhập" />
+            <Button fx:id="buttonLogin" graphicTextGap="0.0" layoutX="71.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="16.0" prefWidth="176.0" styleClass="btn_primary" text="Đăng nhập">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </right>
