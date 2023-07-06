@@ -1,7 +1,6 @@
 package services;
 
 import entity.db.GymDB;
-import entity.model.GoiTap;
 import entity.model.ThietBi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +12,7 @@ import java.sql.SQLException;
 import static utils.Utils.convertDate;
 
 public class ThietBiServices {
-	public static ObservableList<ThietBi> getAllHoiVien() throws SQLException {
+	public static ObservableList<ThietBi> getAllThietBi() throws SQLException {
 
 		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
 		String SELECT_QUERY = "SELECT * FROM `thiet_bi`";
@@ -67,17 +66,17 @@ public class ThietBiServices {
 		return thietBiList;
 	}
 
-//	public static int deleteThietBi(int ID) throws SQLException {
-//		String DELETE_QUERY =
-//				"DELETE FROM `goi_tap` " +
-//						"WHERE `id` =?";
-//		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(DELETE_QUERY);
-//		preparedStatement.setInt(1, ID);
-//		return preparedStatement.executeUpdate();
-//	}
+	public static int deleteThietBi(int ID) throws SQLException {
+		String DELETE_QUERY =
+				"DELETE FROM `thiet_bi` " +
+						"WHERE `id` =?";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(DELETE_QUERY);
+		preparedStatement.setInt(1, ID);
+		return preparedStatement.executeUpdate();
+	}
 
 	public static int updateThietBi(int ID, int idRoom, String ten, String ngayNhapVe, String xuatXu, String tinhTrang) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `hoi_vien` SET `id_phong_tap`=?, `ten`=?, `ngay_nhap_ve`=?," +
+		String UPDATE_QUERY = "UPDATE `thiet_bi` SET `id_phong_tap`=?, `ten`=?, `ngay_nhap_ve`=?," +
 				"`xuat_xu`=?, `tinh_trang`=? WHERE `id` = ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
 		preparedStatement.setInt(1, idRoom);

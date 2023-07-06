@@ -85,23 +85,25 @@ CREATE TABLE `lich_su` (
 
 
 
-ALTER TABLE `lich_su` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
+ALTER TABLE `lich_su` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
+ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `phan_hoi` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
+ALTER TABLE `phan_hoi` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
+ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `thu_phi` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
+ALTER TABLE `thu_phi` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_nhan_vien`) REFERENCES `nhan_vien` (`id`);
+ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_nhan_vien`) REFERENCES `nhan_vien` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_goi_tap`) REFERENCES `goi_tap` (`id`);
+ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_goi_tap`) REFERENCES `goi_tap` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `thiet_bi` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`);
+ALTER TABLE `thiet_bi` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `nhan_vien` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`);
+ALTER TABLE `nhan_vien` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_role`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO role (id, ten_role) VALUES 
 (1, "Chủ phòng gym"),

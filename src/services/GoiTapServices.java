@@ -48,8 +48,8 @@ public class GoiTapServices {
 		return preparedStatement.executeUpdate();
 	}
 
-	public static int updateHoiVien(int ID, int soTien, String tenGoiTap, String loaiGoiTap) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `hoi_vien` SET `ten_goi_tap`=?, `so_tien`=?, `loai_goi_tap`=? WHERE `id` = ?";
+	public static int updateGoiTap(int ID, int soTien, String tenGoiTap, String loaiGoiTap) throws SQLException {
+		String UPDATE_QUERY = "UPDATE `goi_tap` SET `ten_goi_tap`=?, `so_tien`=?, `loai_goi_tap`=? WHERE `id` = ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
 		preparedStatement.setString(1, tenGoiTap);
 		preparedStatement.setInt(2, soTien);
