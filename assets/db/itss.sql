@@ -57,7 +57,8 @@ CREATE TABLE `goi_tap` (
 
 CREATE TABLE `thu_phi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `id_hoi_vien` int
+  `id_hoi_vien` int,
+  `id_goi_tap` int
 );
 
 CREATE TABLE `role` (
@@ -83,8 +84,6 @@ CREATE TABLE `lich_su` (
 
 
 
-
-
 ALTER TABLE `lich_su` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
 
 ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_hoi_vien`) REFERENCES `hoi_vien` (`id`);
@@ -102,6 +101,9 @@ ALTER TABLE `dang_ki_goi_tap` ADD FOREIGN KEY (`id_goi_tap`) REFERENCES `goi_tap
 ALTER TABLE `thiet_bi` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`);
 
 ALTER TABLE `nhan_vien` ADD FOREIGN KEY (`id_phong_tap`) REFERENCES `phong_tap` (`id`);
+
+ALTER TABLE `tai_khoan` ADD FOREIGN KEY (`id_role`) REFERENCES `role` (`id`);
+
 
 INSERT INTO role (id, ten_role) VALUES 
 (1, "Chủ phòng gym"),
@@ -146,7 +148,11 @@ INSERT INTO `thiet_bi`(`id_phong_tap`, `ten`, `ngay_nhap_ve`, `xuat_xu`, `tinh_t
 
 INSERT INTO `tai_khoan`(`tai_khoan`, `mat_khau`, `id_nhan_vien`, `id_role`) VALUES 
 ('admin', "1", 1, 1),
-('quanly', "1", 2, 2);
+('quanly', "1", 2, 2),
+('huanluyenvien', "1", 3, 3),
+('nhanvien1', "1", 4, 4),
+('nhanvien2', "1", 5, 4),
+('nhanvien3', "1", 6, 4);
 
 INSERT INTO `tai_khoan`(`tai_khoan`, `mat_khau`, `id_hoi_vien`, `id_role`) VALUES 
 ('hoivien', "1", 1, 5);
