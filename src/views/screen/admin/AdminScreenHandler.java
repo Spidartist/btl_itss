@@ -138,7 +138,7 @@ public class AdminScreenHandler implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		usernameLabel.setText(toUpperFirstLetter(userName));
-		DangKiTaiKhoanButton.setVisible(userRole.equals("quanly"));
+		DangKiTaiKhoanButton.setVisible(userRole.equals("1"));
 //		hoiVienLabel.setText("" + HoiVienServices.getTotalNhanKhau());
 //		phongTapLabel.setText("" + PhongTapServices.getTotalSoHoKhau());
 //		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanKhau());

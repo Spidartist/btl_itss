@@ -5,12 +5,12 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE TABLE `phong_tap` (
+CREATE TABLE `phong_tap` (   
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `ten_phong` varchar(30)
 );
 
-CREATE TABLE `thiet_bi` (
+CREATE TABLE `thiet_bi` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_phong_tap` int,
   `ten` varchar(30),
@@ -19,19 +19,20 @@ CREATE TABLE `thiet_bi` (
   `tinh_trang` varchar(30)
 );
 
-CREATE TABLE `nhan_vien` (
+CREATE TABLE `nhan_vien` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_phong_tap` int,
   `ho_va_ten` varchar(30)
 );
 
-CREATE TABLE `phan_hoi` (
+CREATE TABLE `phan_hoi` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
-  `noi_dung` text
+  `noi_dung` text,
+  `hoi_dap` text
 );
 
-CREATE TABLE `hoi_vien` (
+CREATE TABLE `hoi_vien` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `ho_ten` varchar(30),
   `sinh_nhat` date,
@@ -40,33 +41,33 @@ CREATE TABLE `hoi_vien` (
   `loai_thanh_vien` varchar(30)
 );
 
-CREATE TABLE `dang_ki_goi_tap` (
+CREATE TABLE `dang_ki_goi_tap` ( 
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
-  `ngay_dang_ki` date,
-  `loai_dang_ki` varchar(30)
+  `ngay_dang_ki` date
 );
 
-CREATE TABLE `goi_tap` (
+CREATE TABLE `goi_tap` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `ten_goi_tap` varchar(30),
   `so_tien` int,
   `loai_goi_tap` varchar(30)
 );
 
-CREATE TABLE `thu_phi` (
+CREATE TABLE `thu_phi` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
-  `id_goi_tap` int
+  `id_goi_tap` int,
+  `ngay_thu_phi` date
 );
 
-CREATE TABLE `role` (
+CREATE TABLE `role` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `ten_role` varchar(30)
 );
 
-CREATE TABLE `tai_khoan` (
+CREATE TABLE `tai_khoan` (  
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `tai_khoan` varchar(30),
   `mat_khau` varchar(30),
@@ -75,10 +76,11 @@ CREATE TABLE `tai_khoan` (
   `id_role` int
 );
 
-CREATE TABLE `lich_su` (
+CREATE TABLE `lich_su` ( 
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
+  `id_phong_tap` int,
   `ngay_su_dung` date
 );
 
@@ -113,10 +115,10 @@ INSERT INTO role (id, ten_role) VALUES
 (5, "Hội viên");
 
 INSERT INTO phong_tap (id, ten_phong) VALUES 
-(1, "Phòng tập gym"),
-(2, "Phòng tập yoga"),
-(3, "Phòng tập sức bền"),
-(4, "Phòng tập thiền");
+(1, "Cơ sở Trần Duy Hưng"),
+(2, "Cơ sở Tạ Quang Bửu"),
+(3, "Cơ sở Quất Lâm"),
+(4, "Cơ sở Trần Đại Nghĩa");
 
 INSERT INTO nhan_vien (id_phong_tap, ho_va_ten) VALUES
 (1, "Hoàng Danh Quân"),
@@ -132,11 +134,16 @@ INSERT INTO `hoi_vien`(`ho_ten`, `sinh_nhat`, `loai_thanh_vien`, `gioi_tinh`, `n
 ("Nguyễn Quang Trường", "2002-11-11", "VIP2", "Nam", "Game thủ"),
 ("Trần Minh Tuấn", "2009-02-02", "VIP3", "Nam", "Sinh viên");
 
-INSERT INTO `goi_tap`(`ten_goi_tap`, `so_tien`, `loai_goi_tap`) VALUES 
-("Giảm mỡ bụng", "1000000", "Theo tháng"),
-("Tăng cơ", "90000", "Theo ngày"),
-("Tăng sự dẻo dai của cơ thể", "9000000", "Theo năm"),
-("Tăng sức bền", "90000", "Theo ngày");
+INSERT INTO `goi_tap`(`id`, `ten_goi_tap`, `so_tien`, `loai_goi_tap`) VALUES 
+(1, "Gói Gym cơ bản", "60000", "Theo ngày"),
+(2, "Gói Gym cơ bản", "1500000", "Theo tháng"),
+(3, "Gói Gym cơ bản", "9000000", "Theo năm"),
+(4, "Gói Gym nâng cao", "900000", "Theo ngày"),
+(5, "Gói Gym nâng cao", "2000000", "Theo tháng"),
+(6, "Gói Gym nâng cao", "9000000", "Theo năm"),
+(7, "Gói Gym siêu cấp", "120000", "Theo ngày"),
+(8, "Gói Gym siêu cấp", "2100000", "Theo tháng"),
+(9, "Gói Gym siêu cấp", "12000000", "Theo năm");
 
 INSERT INTO `thiet_bi`(`id_phong_tap`, `ten`, `ngay_nhap_ve`, `xuat_xu`, `tinh_trang`) VALUES 
 (1, "Máy chạy bộ", "2022-12-11", "Trung Quốc", "Còn sử dụng được"),
@@ -156,5 +163,32 @@ INSERT INTO `tai_khoan`(`tai_khoan`, `mat_khau`, `id_nhan_vien`, `id_role`) VALU
 
 INSERT INTO `tai_khoan`(`tai_khoan`, `mat_khau`, `id_hoi_vien`, `id_role`) VALUES 
 ('hoivien', "1", 1, 5);
+
+INSERT INTO `phan_hoi`(`id_hoi_vien`, `noi_dung`, `hoi_dap`) VALUES 
+(1, "Phòng tập Tạ Quang Bửu quá bẩn", "OK tôi sẽ cho dọn dẹp"),
+(2, "Phòng tập Tạ Quang Bửu có anh PT khoai to quá", "Cảm ơn bạn"),
+(1, "Phòng tập Trần Duy Hưng không có điều hòa nóng quá", "OK tôi sẽ cho lắp điều hòa"),
+(3, "Phòng tập Quất Lâm quá bẩn", "Nhiều người bảo sạch mà");
+
+INSERT INTO `dang_ki_goi_tap`(`id_hoi_vien`, `id_goi_tap`, `ngay_dang_ki`) VALUES 
+(1, 2, 2022-11-12),
+(2, 6, 2020-11-12),
+(3, 5, 2021-11-12),
+(4, 8, 2023-11-12);
+
+INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES
+(1, 2, 2023-01-02),
+(2, 6, 2022-11-22),
+(3, 5, 2021-11-22),
+(4, 8, 2023-11-22);
+
+INSERT INTO `lich_su`(`id_hoi_vien`, `id_goi_tap`, `id_phong_tap`, `ngay_su_dung`) VALUES
+(1, 2, 1, 2023-07-07),
+(1, 2, 2, 2023-07-08),
+(1, 2, 1, 2023-07-09),
+(1, 2, 3, 2023-07-10),
+(1, 2, 1, 2023-07-11),
+(2, 6, 1, 2023-07-07);
+
 
 COMMIT;

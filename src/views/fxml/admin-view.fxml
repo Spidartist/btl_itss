@@ -25,7 +25,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
                      <children>
-                        <ImageView fitHeight="114.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="76.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/logo2_nobg.png" />
                            </image>
@@ -124,6 +124,21 @@
                            </VBox.margin>
                         </Button>
                         <Button id="menuButton" fx:id="thuPhiButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToThuPhi" prefHeight="42.0" prefWidth="223.0" text="Thu Phí" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/add-friend.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button id="menuButton" fx:id="thuPhiButton1" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToThuPhi" prefHeight="42.0" prefWidth="223.0" text="Phản hồi" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>

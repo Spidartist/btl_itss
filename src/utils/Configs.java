@@ -18,6 +18,7 @@ public class Configs {
 	public static final String THU_PHI_SCREEN_PATH = "/views/fxml/thuphi-view.fxml";
 	public static final String DETAIL_THU_PHI_VIEW_FXML = "/views/fxml/thuphi-detail-view.fxml";
 	
+	
 	public static final String THONG_KE_SCREEN_PATH = "/views/fxml/thongke-view.fxml";
 	public static final String DANG_KI_USER_SCREEN_PATH = "/views/fxml/dangki-view.fxml";
 	
