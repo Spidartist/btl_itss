@@ -10,8 +10,9 @@ public class GoiTap {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSoTien() {
-		return soTien;
+	public String getSoTien() {
+		String strNumber = Integer.toString(soTien);
+		return strNumber;
 	}
 	public void setSoTien(int soTien) {
 		this.soTien = soTien;
