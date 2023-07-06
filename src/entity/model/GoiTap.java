@@ -1,5 +1,8 @@
 package entity.model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class GoiTap {
 
 	private int id, soTien;
@@ -11,8 +14,10 @@ public class GoiTap {
 		this.id = id;
 	}
 	public String getSoTien() {
-		String strNumber = Integer.toString(soTien);
-		return strNumber;
+	    Locale locale = new Locale("vi", "VN");
+	    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
+	    String strNumber = currencyFormat.format(soTien);
+	    return strNumber;
 	}
 	public void setSoTien(int soTien) {
 		this.soTien = soTien;
@@ -35,6 +40,10 @@ public class GoiTap {
 		this.soTien = soTien;
 		this.tenGoiTap = tenGoiTap;
 		this.loaiGoiTap = loaiGoiTap;
+	}
+	public int getSoTien_int() {
+		// TODO Auto-generated method stub
+		return soTien;
 	}
 	
 

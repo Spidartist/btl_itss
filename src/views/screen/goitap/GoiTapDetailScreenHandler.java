@@ -2,6 +2,8 @@ package views.screen.goitap;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import entity.model.GoiTap;
 import entity.model.goiTap;
@@ -44,8 +46,9 @@ public class GoiTapDetailScreenHandler {
     }
     
     public void setGoiTap(GoiTap goiTap) throws SQLException {
+	    String soTien_format = String.valueOf(goiTap.getSoTien_int());
     	tenGoiTapTextField.setText(goiTap.getTenGoiTap());
-    	soTienTextField.setText(goiTap.getSoTien());
+    	soTienTextField.setText(soTien_format);
     	loaiGoiTapChoiceBox.setValue(goiTap.getLoaiGoiTap());
     	setComboBox();
     }
