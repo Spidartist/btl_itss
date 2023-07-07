@@ -23,11 +23,11 @@
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="190.0" stylesheets="@../styles/navigation-styles.css">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
+                  <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="220.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
                      <children>
                         <ImageView fitHeight="114.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/logo2_nobg.png" />
+                              <Image url="@../../../../assets/img/gym-icon-test.png"/>
                            </image>
                            <VBox.margin>
                               <Insets bottom="16.0" left="8.0" right="8.0" top="8.0" />

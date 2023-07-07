@@ -22,7 +22,7 @@ public class PhongTapServices {
         ResultSet result = preparedStatement.executeQuery();
         
         while (result.next()) {
-        	phongTapList.add(new PhongTap(result.getInt("id"), result.getString("ten_phong")));
+        	phongTapList.add(new PhongTap(result.getInt("id"), result.getString("id") + result.getString("ten_phong")));
 		}
         
         return phongTapList;

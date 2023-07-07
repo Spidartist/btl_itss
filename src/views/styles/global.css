@@ -1,3 +1,4 @@
+
 .logo{
     -fx-background-color: #fff;
 }
@@ -5,16 +6,14 @@
 .login{
     -fx-background-color: #000;
 
-}
-.button{
-    -fx-background-color: #fff;
-    -fx-text-fill: #333;
-    
+@ -13,28 +9,28 @@
 }
 
 .button:focused{
     -fx-text-fill: #0284c7 ;
     -fx-background-color: #bae6fd ;
+    -fx-text-fill: #FFFFFF ;
+    -fx-background-color: #000000 ;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
@@ -22,43 +21,29 @@
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
     -fx-border-color: #0284c7;
+    -fx-border-color: #A9A9A9;
 
     -fx-text-fill: #0284c7;
+    -fx-text-fill: black;
 }
 
 .btn:focused{
     -fx-font-size: 12px;
     
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 
 
 .button:hover{
     -fx-text-fill: #0284c7;
     -fx-background-color: #e0f2fe;
+    -fx-text-fill: 	#FFFFFF;
+    -fx-background-color: #000000;
 }
 
 .sidebar{
-    -fx-background-color: #fff;
-}
-.btn_primary{
-    -fx-border-radius: 4px;
-    -fx-border-width: 1px;
-    -fx-background-color: #0284c7;
-
-    -fx-text-fill: #fff;
-}
-.btn_primary:hover{
-    -fx-background-color: #38bdf8;
-    -fx-font-size: 12px;
-    
-    -fx-text-fill: #fff;
-}
-.btn_primary:focused{
-    -fx-border-radius: 4px;
-    -fx-border-width: 1px;
-    -fx-background-color: #0284c7;
-    -fx-font-size: 12px;
-
+@ -62,20 +58,9 @@
     -fx-text-fill: #fff;
 }
 
@@ -76,31 +61,9 @@
     -fx-text-fill: #fff;
 } */
 
+.Imgbtn:hover{
+	-fx-background-color: white !important;
+}
 
 .danger{
     -fx-border-radius: 4px;
-    -fx-border-width: 1px;
-    -fx-border-color: #fc0404;
-    
-    -fx-text-fill: #fc0404;
-    
-}
-
-
-.danger :hover{
-    -fx-border-radius: 4px;
-    -fx-border-width: 1px;
-    -fx-border-color: #fc0404;
-    -fx-background-color:#dab8b8 ;
-    -fx-text-fill: #fc0404;
-    
-}
-
-.text-field{
-    /* -fx-border-radius:10px; */
-    /* -fx-background-color:transparent; */
-    -fx-font-family: Segoe UI;
-    -fx-font-size: 14px;
-    -fx-font-style: italic; 
-    /* -fx-border-color: #3f4d67; */
-}

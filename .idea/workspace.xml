@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0e73158d-6054-4d8c-bb58-fc7fe6a29bbd" name="Changes" comment="done_thietbi">
+      <change afterPath="$PROJECT_DIR$/src/utils/deAccent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/PhongTapServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PhongTapServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/fxml/admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/fxml/admin-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/fxml/hoivien-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/fxml/hoivien-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/fxml/thietbi-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/fxml/thietbi-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/screen/thietbi/ThietBiScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/screen/thietbi/ThietBiScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/styles/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/styles/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/styles/table.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2SCDj18BoIMkon6O5b8734wV3B8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "E:/year3_ki2/btl_itss",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e73158d-6054-4d8c-bb58-fc7fe6a29bbd" name="Changes" comment="" />
+      <created>1688641803985</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688641803985</updated>
+    </task>
+    <task id="LOCAL-00001" summary="update_query_delete">
+      <created>1688665354215</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688665354215</updated>
+    </task>
+    <task id="LOCAL-00002" summary="done_thietbi">
+      <created>1688730507896</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688730507896</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="truong_branch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update_query_delete" />
+    <MESSAGE value="done_thietbi" />
+    <option name="LAST_COMMIT_MESSAGE" value="done_thietbi" />
+  </component>
+</project>
