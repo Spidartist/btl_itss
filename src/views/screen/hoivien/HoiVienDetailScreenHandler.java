@@ -22,7 +22,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import services.GeneralServices;
 import services.HoiVienServices;
+import services.TaiKhoanServices;
 
 public class HoiVienDetailScreenHandler implements Initializable{
 	
@@ -101,12 +103,16 @@ public class HoiVienDetailScreenHandler implements Initializable{
                 ;
             } else {
                     try {
-                        int result = HoiVienServices.addHoiVien(hoVaTen, ngaySinh, gioiTinh, loaiThanhVien, ngheNghiep);
-                        if (result == 1) {
+                        int result1 = HoiVienServices.addHoiVien(hoVaTen, ngaySinh, gioiTinh, loaiThanhVien, ngheNghiep);
+                        
+                        int id_hoi_vien = GeneralServices.getIdViaName("hoi_vien", "ho_ten", hoVaTen);
+                        
+                        int result2 = TaiKhoanServices.addTaiKhoanHoiVien(5, id_hoi_vien);
+                        if (result1 == 1 && result2 ==1) {
                             createDialog(
                                     Alert.AlertType.CONFIRMATION,
                                     "Thành công",
-                                    "", "Thêm hội viên thành công!"
+                                    "Thêm hội viên thành công!", "Hãy tạo tài khoản cho hội viên này"
                             );
                         } else {
                             createDialog(

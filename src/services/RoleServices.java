@@ -23,6 +23,15 @@ public class RoleServices {
         
         return tenRoleList;
     }
+	
+	public static String getNameViaId(int id_role) throws SQLException {
+		String SELECT_QUERY = "SELECT `ten_role` FROM `role` WHERE id = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, id_role);
+        ResultSet result = preparedStatement.executeQuery();
+        result.next();
+        return result.getString("ten_role");
+	}
 
 	public RoleServices() {
 		// TODO Auto-generated constructor stub

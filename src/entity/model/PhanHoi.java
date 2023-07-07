@@ -2,19 +2,19 @@ package entity.model;
 
 public class PhanHoi {
 
-	private int id, idHoiVien;
-	private String noiDung;
+	private int id;
+	private String tenHoiVien, noiDung, hoiDap;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getIdHoiVien() {
-		return idHoiVien;
+	public String getTenHoiVien() {
+		return tenHoiVien;
 	}
-	public void setIdHoiVien(int idHoiVien) {
-		this.idHoiVien = idHoiVien;
+	public void setTenHoiVien(String tenHoiVien) {
+		this.tenHoiVien = tenHoiVien;
 	}
 	public String getNoiDung() {
 		return noiDung;
@@ -22,11 +22,22 @@ public class PhanHoi {
 	public void setNoiDung(String noiDung) {
 		this.noiDung = noiDung;
 	}
-	public PhanHoi(int id, int idHoiVien, String noiDung) {
+	public String getHoiDap() {
+		return hoiDap;
+	}
+	public void setHoiDap(String hoiDap) {
+		this.hoiDap = hoiDap;
+	}
+	public PhanHoi(int id, String tenHoiVien, String noiDung, String hoiDap) {
 		super();
 		this.id = id;
-		this.idHoiVien = idHoiVien;
+		this.tenHoiVien = tenHoiVien;
 		this.noiDung = noiDung;
+		this.hoiDap = hoiDap;
 	}
+	
+	
+	
+	
 	
 }

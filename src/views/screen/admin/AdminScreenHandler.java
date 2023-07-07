@@ -97,6 +97,21 @@ public class AdminScreenHandler implements Initializable{
     public void switchToHoiVien() throws IOException {
     	viewUtils.changeAnchorPane(basePane, HOI_VIEN_SCREEN_PATH);
     }
+    
+    @FXML
+    void switchToGoiTapDaDangKi() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, GOI_TAP_DA_DANG_KI_SCREEN_PATH);
+    }
+    
+    @FXML
+    void switchToLichSuDiTap() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, LICH_SU_DI_TAP_SCREEN_PATH);
+    }
+    
+    @FXML
+    void switchToPhanHoi() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, PHAN_HOI_SCREEN_PATH);
+    }
 
     @FXML
     public void switchToNhanVien() throws IOException {

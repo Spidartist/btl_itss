@@ -24,6 +24,27 @@ public class TaiKhoanServices {
         preparedStatement.setInt(2, id_role);
         return preparedStatement.executeUpdate();
     }
+	
+	public static int updateTaiKhoanNhanVien(String tai_khoan, String mat_khau, int id_nhan_vien) throws SQLException {
+		
+        String INSERT_QUERY = "UPDATE `tai_khoan` SET `tai_khoan`=?,`mat_khau`=? WHERE tai_khoan.id_nhan_vien = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(INSERT_QUERY);
+        preparedStatement.setString(1, tai_khoan);
+        preparedStatement.setString(2, mat_khau);
+        preparedStatement.setInt(3, id_nhan_vien);
+        return preparedStatement.executeUpdate();
+    }
+	
+	public static int updateTaiKhoanHoiVien(String tai_khoan, String mat_khau, int id_hoi_vien) throws SQLException {
+		
+        String INSERT_QUERY = "UPDATE `tai_khoan` SET `tai_khoan`=?,`mat_khau`=? WHERE tai_khoan.id_hoi_vien = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(INSERT_QUERY);
+        preparedStatement.setString(1, tai_khoan);
+        preparedStatement.setString(2, mat_khau);
+        preparedStatement.setInt(3, id_hoi_vien);
+        return preparedStatement.executeUpdate();
+    }
+	
 
 	public TaiKhoanServices() {
 		// TODO Auto-generated constructor stub
