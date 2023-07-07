@@ -54,7 +54,15 @@ public class ThietBiDetailScreenHandler implements Initializable {
         ngayNhapVeDatePicker.setValue(LOCAL_DATE(thietBi.getNgayNhapVe()));
         xuatXuTextField.setText(thietBi.getXuatXu());
         tinhTrangChoiceBox.setValue(thietBi.getTinhTrang());
-        phongComboBox.setValue(thietBi.getTenPhongTap());
+        String tenPhongTap = thietBi.getTenPhongTap();
+        int phongTapId = 0;
+        try {
+			phongTapId = ThietBiServices.getPhongTapId(tenPhongTap);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        phongComboBox.setValue(phongTapId + " : " + thietBi.getTenPhongTap());
     }
     public void setTitle(String title) {
         this.title.setText(title);

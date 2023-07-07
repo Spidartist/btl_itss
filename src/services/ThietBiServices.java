@@ -13,6 +13,21 @@ import java.sql.SQLException;
 import static utils.Utils.convertDate;
 
 public class ThietBiServices {
+	
+	public static int getPhongTapId(String tenPhongTap) throws SQLException {
+	    String SELECT_QUERY = "SELECT id FROM `phong_tap` WHERE ten_phong = ?";
+	    PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+	    preparedStatement.setString(1, tenPhongTap);
+	    ResultSet result = preparedStatement.executeQuery();
+
+	    if (result.next()) {
+	        return result.getInt("id");
+	    } else {
+	        // Handle the case where the PhongTap with the given tenPhongTap doesn't exist
+	        return -1; // or throw an exception, return a default value, etc.
+	    }
+	}
+	
 	public static ObservableList<ThietBi> getAllThietBi() throws SQLException {
 
 		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
@@ -60,7 +75,7 @@ public class ThietBiServices {
 //
 //		return thietBi;
 //	}
-
+//
 //	public static ObservableList<ThietBi> findThietBiByIdRoom(int idRoom) throws SQLException {
 //		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
 //		String SELECT_QUERY = "SELECT * FROM `thiet_bi` WHERE `id_phong_tap` = ?";
