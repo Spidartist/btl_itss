@@ -1,6 +1,6 @@
 package views.screen.hoivien;
 
-
+import static utils.deAccent.removeAccent;
 import static utils.Configs.DETAIL_HOI_VIEN_VIEW_FXML;
 import static utils.Configs.HOI_VIEN_SCREEN_PATH;
 import static utils.Configs.ROWS_PER_PAGE;
@@ -240,8 +240,8 @@ public class HoiVienScreenHandler implements Initializable{
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
-				String lowerCaseFilter = searchTextField.getText().toLowerCase();
-				if (person.getHoTen().toLowerCase().contains(lowerCaseFilter)) {
+				String lowerCaseFilter = removeAccent(searchTextField.getText().toLowerCase());
+				if (removeAccent(person.getHoTen().toLowerCase()).contains(lowerCaseFilter)) {
 					return true;
 				} else {
 					return false;
