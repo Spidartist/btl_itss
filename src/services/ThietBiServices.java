@@ -1,6 +1,7 @@
 package services;
 
 import entity.db.GymDB;
+import entity.model.PhongTap;
 import entity.model.ThietBi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,14 +16,21 @@ public class ThietBiServices {
 	public static ObservableList<ThietBi> getAllThietBi() throws SQLException {
 
 		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
-		String SELECT_QUERY = "SELECT * FROM `thiet_bi`";
+		String SELECT_QUERY = "SELECT tb.id, tb.ten, tb.ngay_nhap_ve, tb.xuat_xu, tb.tinh_trang, pt.ten_phong AS ten_phong FROM `thiet_bi` tb " +
+				"JOIN `phong_tap` pt ON tb.id_phong_tap = pt.id";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
 		ResultSet result = preparedStatement.executeQuery();
 
 		while (result.next()) {
-			thietBiList.add(new ThietBi(result.getInt("id"), result.getInt("id_phong_tap"),
-					result.getString("ten"), convertDate(result.getString("ngay_nhap_ve")),
-					result.getString("xuat_xu"),result.getString("tinh_trang")));
+			int id = result.getInt("id");
+			String ten = result.getString("ten");
+			String ngayNhapVe = convertDate(result.getString("ngay_nhap_ve"));
+			String xuatXu = result.getString("xuat_xu");
+			String tinhTrang = result.getString("tinh_trang");
+			String tenPhong = result.getString("ten_phong");
+
+			ThietBi thietBi = new ThietBi(id, ten, ngayNhapVe, xuatXu, tinhTrang, tenPhong);
+			thietBiList.add(thietBi);
 		}
 
 		return thietBiList;
@@ -42,29 +50,29 @@ public class ThietBiServices {
 		return preparedStatement.executeUpdate();
 	}
 
-	public static ThietBi findThietBiById(int ID) throws SQLException{
-		String SELECT_QUERY = "SELECT * FROM `thiet_bi` WHERE `id` = ?";
-		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
-		ResultSet result = preparedStatement.executeQuery();
-		ThietBi thietBi = new ThietBi(result.getInt("id"), result.getInt("id_phong_tap"),
-				result.getString("ten"), convertDate(result.getString("ngay_nhap_ve")),
-				result.getString("xuat_xu"),result.getString("tinh_trang"));
+//	public static ThietBi findThietBiById(int ID) throws SQLException{
+//		String SELECT_QUERY = "SELECT * FROM `thiet_bi` WHERE `id` = ?";
+//		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+//		ResultSet result = preparedStatement.executeQuery();
+//		ThietBi thietBi = new ThietBi(result.getInt("id"), result.getInt("id_phong_tap"),
+//				result.getString("ten"), convertDate(result.getString("ngay_nhap_ve")),
+//				result.getString("xuat_xu"),result.getString("tinh_trang"));
+//
+//		return thietBi;
+//	}
 
-		return thietBi;
-	}
-
-	public static ObservableList<ThietBi> findThietBiByIdRoom(int idRoom) throws SQLException {
-		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
-		String SELECT_QUERY = "SELECT * FROM `thiet_bi` WHERE `id_phong_tap` = ?";
-		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
-		ResultSet result = preparedStatement.executeQuery();
-		while (result.next()) {
-			thietBiList.add(new ThietBi(result.getInt("id"), result.getInt("id_phong_tap"),
-					result.getString("ten"), convertDate(result.getString("ngay_nhap_ve")),
-					result.getString("xuat_xu"), result.getString("tinh_trang")));
-		}
-		return thietBiList;
-	}
+//	public static ObservableList<ThietBi> findThietBiByIdRoom(int idRoom) throws SQLException {
+//		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();
+//		String SELECT_QUERY = "SELECT * FROM `thiet_bi` WHERE `id_phong_tap` = ?";
+//		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+//		ResultSet result = preparedStatement.executeQuery();
+//		while (result.next()) {
+//			thietBiList.add(new ThietBi(result.getInt("id"), result.getInt("id_phong_tap"),
+//					result.getString("ten"), convertDate(result.getString("ngay_nhap_ve")),
+//					result.getString("xuat_xu"), result.getString("tinh_trang")));
+//		}
+//		return thietBiList;
+//	}
 
 	public static int deleteThietBi(int ID) throws SQLException {
 		String DELETE_QUERY =
