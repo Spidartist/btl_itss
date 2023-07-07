@@ -10,7 +10,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import entity.model.GoiTap;
-import entity.model.goiTap;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

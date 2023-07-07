@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.nhanvien.NhanVienScreenHandler">
+<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.phanhoi.PhanHoiScreenHandler">
    <children>
-      <Text layoutX="37.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên" textAlignment="CENTER" wrappingWidth="140.9140625">
+      <Text layoutX="38.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phản hồi" textAlignment="CENTER" wrappingWidth="140.9140625">
          <font>
             <Font name="Segoe UI" size="24.0" />
          </font>
@@ -22,9 +22,9 @@
       <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="577.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
-            <TableColumn fx:id="hoVaTenColumn" prefWidth="242.0" text="Họ và tên" />
-            <TableColumn fx:id="phongTapColumn" prefWidth="147.5" text="Phòng tập" />
-            <TableColumn fx:id="vaiTroColumn" prefWidth="154.0" text="Vai trò" />
+            <TableColumn fx:id="hoVaTenColumn" prefWidth="222.0" text="Họ và tên hội viên" />
+            <TableColumn fx:id="noiDungColumn" prefWidth="178.0" text="Nội dung phản hồi" />
+            <TableColumn fx:id="hoiDapColumn" prefWidth="144.5" text="Hồi đáp của quản lý" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">
@@ -34,7 +34,7 @@
       </TextField>
       <VBox layoutX="634.0" layoutY="128.0" prefHeight="197.0" prefWidth="160.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#addNhanVien" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#addPhanHoi" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteNhanVien" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deletePhanHoi" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>

@@ -2,25 +2,25 @@ package entity.model;
 
 public class ThietBi {
 	
-	private int id, idPhongTap;
-	private String ten, ngayNhapVe, xuatXu, tinhTrang;
+	private int id;
+	private String ten, tenPhongTap, ngayNhapVe, xuatXu, tinhTrang;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getIdPhongTap() {
-		return idPhongTap;
-	}
-	public void setIdPhongTap(int idPhongTap) {
-		this.idPhongTap = idPhongTap;
-	}
 	public String getTen() {
 		return ten;
 	}
 	public void setTen(String ten) {
 		this.ten = ten;
+	}
+	public String getTenPhongTap() {
+		return tenPhongTap;
+	}
+	public void setTenPhongTap(String tenPhongTap) {
+		this.tenPhongTap = tenPhongTap;
 	}
 	public String getNgayNhapVe() {
 		return ngayNhapVe;
@@ -40,14 +40,16 @@ public class ThietBi {
 	public void setTinhTrang(String tinhTrang) {
 		this.tinhTrang = tinhTrang;
 	}
-	public ThietBi(int id, int idPhongTap, String ten, String ngayNhapVe, String xuatXu, String tinhTrang) {
+	public ThietBi(int id, String ten, String tenPhongTap, String ngayNhapVe, String xuatXu, String tinhTrang) {
 		super();
 		this.id = id;
-		this.idPhongTap = idPhongTap;
 		this.ten = ten;
+		this.tenPhongTap = tenPhongTap;
 		this.ngayNhapVe = ngayNhapVe;
 		this.xuatXu = xuatXu;
 		this.tinhTrang = tinhTrang;
 	}
+	
+	
 	
 }
