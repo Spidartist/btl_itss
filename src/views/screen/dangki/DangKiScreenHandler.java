@@ -25,27 +25,24 @@ import services.RoleServices;
 import services.TaiKhoanServices;
 import utils.ViewUtils;
 
-public class DangKiScreenHandler implements Initializable{
+public class DangKiScreenHandler{
 	
 	int id_role;
 	int id_nguoi_dung;
 	boolean isNhanVien;
 	
-	public void setup() throws SQLException {
-		userComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-			  @Override 
-			  public void changed(ObservableValue<? extends String> selected, String oldSelect, String newSelect) {
-				  roleDisplayTextField.setText(newSelect);
-			  }
-		});
+	public void setup(String name, String role_name, int id_nguoi_dung, int id_role, boolean isNhanVien) {
+		this.id_nguoi_dung = id_nguoi_dung;
+		this.id_role = id_role;
+		this.isNhanVien = isNhanVien;
 		
-		ObservableList<String> chuaCoTaiKhoanList = GeneralServices.getDanhSachChuaCoTaiKhoan();
-		userComboBox.setItems(chuaCoTaiKhoanList);
 		
+		roleDisplayTextField.setText(role_name);
+		roleDisplayTextField.setEditable(false);
+		
+		nameDisplayTextField.setText(name);
+		nameDisplayTextField.setEditable(false);
 	}
-	
-	
-	
 	
     @FXML
     private TextField roleDisplayTextField;
@@ -60,7 +57,7 @@ public class DangKiScreenHandler implements Initializable{
     private TextField signUpUsername;
 
     @FXML
-    private ComboBox<String> userComboBox;
+    private TextField nameDisplayTextField;
 
     @FXML
     void signUp(ActionEvent event) throws SQLException, IOException {
@@ -89,42 +86,42 @@ public class DangKiScreenHandler implements Initializable{
     	
     }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		roleDisplayTextField.setEditable(false);
-		userComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-			  @Override 
-			  public void changed(ObservableValue<? extends String> selected, String oldSelect, String newSelect) {
-				  try {
-					id_role = GeneralServices.getRoleViaName(newSelect);
-					String role_name = RoleServices.getNameViaId(id_role);
-					roleDisplayTextField.setText(role_name);
-					if (id_role == 5) {
-						isNhanVien = false;
-						id_nguoi_dung = GeneralServices.getIdViaName("hoi_vien", "ho_ten", newSelect);
-					}else {
-						isNhanVien = true;
-						id_nguoi_dung = GeneralServices.getIdViaName("nhan_vien", "ho_va_ten", newSelect);
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-				
-				  
-			  }
-		});
-		
-		ObservableList<String> chuaCoTaiKhoanList;
-		try {
-			chuaCoTaiKhoanList = GeneralServices.getDanhSachChuaCoTaiKhoan();
-			userComboBox.setItems(chuaCoTaiKhoanList);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
+//	@Override
+//	public void initialize(URL location, ResourceBundle resources) {
+//		roleDisplayTextField.setEditable(false);
+//		userComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//			  @Override 
+//			  public void changed(ObservableValue<? extends String> selected, String oldSelect, String newSelect) {
+//				  try {
+//					id_role = GeneralServices.getRoleViaName(newSelect);
+//					String role_name = RoleServices.getNameViaId(id_role);
+//					roleDisplayTextField.setText(role_name);
+//					if (id_role == 5) {
+//						isNhanVien = false;
+//						id_nguoi_dung = GeneralServices.getIdViaName("hoi_vien", "ho_ten", newSelect);
+//					}else {
+//						isNhanVien = true;
+//						id_nguoi_dung = GeneralServices.getIdViaName("nhan_vien", "ho_va_ten", newSelect);
+//					}
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} 
+//				
+//				  
+//			  }
+//		});
+//		
+//		ObservableList<String> chuaCoTaiKhoanList;
+//		try {
+//			chuaCoTaiKhoanList = GeneralServices.getDanhSachChuaCoTaiKhoan();
+//			userComboBox.setItems(chuaCoTaiKhoanList);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//	}
 
 }

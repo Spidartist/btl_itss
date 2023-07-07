@@ -114,6 +114,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
                                     "Thành công",
                                     "Thêm hội viên thành công!", "Hãy tạo tài khoản cho hội viên này"
                             );
+                            viewUtils.switchToDangKi(event, hoVaTen, "Hội viên", id_hoi_vien, 5, false);;
                         } else {
                             createDialog(
                                     Alert.AlertType.ERROR,
@@ -124,7 +125,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    viewUtils.switchToHoiVien(event);
+//                    viewUtils.switchToHoiVien(event);
                 
             }
         }

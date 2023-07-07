@@ -1,6 +1,7 @@
 package views.screen.nhanvien;
 
 import static utils.Utils.createDialog;
+import static utils.Configs.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -106,10 +107,12 @@ public class NhanVienDetailScreenHandler {
                     
                     if (result1 == 1 && result2 == 1) {
                         createDialog(
-                                Alert.AlertType.CONFIRMATION,
+                                Alert.AlertType.INFORMATION,
                                 "Thành công",
                                 "Thêm nhân viên thành công!", "Hãy tạo tài khoản cho nhân viên này"
                         );
+                        viewUtils.switchToDangKi(event, hoVaTen, tenRole, id_nhan_vien, id_role, true);;
+                        
                     } else {
                         createDialog(
                                 Alert.AlertType.ERROR,
@@ -120,7 +123,7 @@ public class NhanVienDetailScreenHandler {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                viewUtils.switchToNhanVien(event);
+//                viewUtils.switchToNhanVien(event);
             
         }
     }
