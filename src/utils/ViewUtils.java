@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import views.screen.admin.AdminScreenHandler;
+import views.screen.dangki.DangKiScreenHandler;
+import views.screen.nhanvien.NhanVienDetailScreenHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static utils.Configs.*;
@@ -74,6 +77,17 @@ public class ViewUtils {
         stage.setScene(scene);
         stage.show();
     }
+    
+    public void switchToDangKi(ActionEvent event, String name, String role_name, int id_nguoi_dung, int id_role, boolean isNhanVien) throws IOException, SQLException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(DANG_KI_USER_SCREEN_PATH));
+		Parent studentViewParent = loader.load();
+		Scene scene = new Scene(studentViewParent);
+		DangKiScreenHandler controller = loader.getController();
+		controller.setup(name, role_name, id_nguoi_dung, id_role, isNhanVien);
+		stage.setScene(scene);
+    }
 
     public void switchToThietBi(ActionEvent event) throws IOException {
         Stage stage;
@@ -104,6 +118,20 @@ public class ViewUtils {
     }
     
     public void switchToThuPhi(ActionEvent event) throws IOException {
+        Stage stage;
+        Scene scene;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
+        root = loader.load();
+        AdminScreenHandler controller = loader.getController();
+        controller.switchToThuPhi();
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void switchToPhanHoi(ActionEvent event) throws IOException {
         Stage stage;
         Scene scene;
         Parent root = null;

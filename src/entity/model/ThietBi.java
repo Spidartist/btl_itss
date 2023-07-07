@@ -12,7 +12,6 @@ public class ThietBi {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getTen() {
 		return ten;
 	}
@@ -20,7 +19,6 @@ public class ThietBi {
 	public void setTen(String ten) {
 		this.ten = ten;
 	}
-
 	public String getNgayNhapVe() {
 		return ngayNhapVe;
 	}
@@ -56,6 +54,7 @@ public class ThietBi {
 	public ThietBi(int id, String ten, String ngayNhapVe, String xuatXu, String tinhTrang, String tenPhongTap) {
 		this.id = id;
 		this.ten = ten;
+		this.tenPhongTap = tenPhongTap;
 		this.ngayNhapVe = ngayNhapVe;
 		this.xuatXu = xuatXu;
 		this.tinhTrang = tinhTrang;
