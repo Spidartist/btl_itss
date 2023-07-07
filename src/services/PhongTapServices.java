@@ -28,6 +28,22 @@ public class PhongTapServices {
         return phongTapList;
     }
 	
+	
+	public static ObservableList<String> getTenAll() throws SQLException {
+		
+		ObservableList<String> phongTapList = FXCollections.observableArrayList();
+        String SELECT_QUERY = "SELECT `ten_phong` FROM `phong_tap`";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        ResultSet result = preparedStatement.executeQuery();
+        
+        while (result.next()) {
+        	phongTapList.add(result.getString("ten_phong"));
+		}
+        
+        return phongTapList;
+    }
+	
+	
 	public static int addPhongTap(String tenPhongTap) throws SQLException {
 		
         String INSERT_QUERY = "INSERT INTO `phong_tap`(`ten_phong`) VALUES (?)";

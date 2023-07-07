@@ -1,5 +1,5 @@
 package views.screen.phongtap;
-
+import static utils.deAccent.removeAccent;
 import static utils.Configs.*;
 import static utils.Utils.createDialog;
 
@@ -179,11 +179,11 @@ public class PhongTapScreenHandler implements Initializable{
     void deletePhongTap(ActionEvent event) {
     	PhongTap selected = tableView.getSelectionModel().getSelectedItem();
 		if (selected == null)
-			createDialog(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng chọn nhân khẩu để tiếp tục", "");
+			createDialog(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng chọn phòng tập để tiếp tục", "");
 		else {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle("Xác nhận xóa nhân khẩu");
-			alert.setContentText("Bạn muốn xóa nhân khẩu này?");
+			alert.setTitle("Xác nhận xóa phòng tập");
+			alert.setContentText("Bạn muốn xóa phòng tập này?");
 			ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
 			ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
 			alert.getButtonTypes().setAll(okButton, noButton);
@@ -218,8 +218,8 @@ public class PhongTapScreenHandler implements Initializable{
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
-				String lowerCaseFilter = searchTextField.getText().toLowerCase();
-				if (person.getTenPhong().toLowerCase().contains(lowerCaseFilter)) {
+				String lowerCaseFilter = removeAccent(searchTextField.getText().toLowerCase());
+				if (removeAccent(person.getTenPhong().toLowerCase()).contains(lowerCaseFilter)) {
 					return true;
 				} else {
 					return false;

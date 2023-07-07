@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 /**
  * Lop tien ich xu ly ky tu tieng Viet
- *
+ * 
  * @author tnt2402
- *
+ * 
  */
 public class deAccent {
     // Mang cac ky tu goc co dau
@@ -37,7 +37,7 @@ public class deAccent {
 
     /**
      * Bo dau 1 ky tu
-     *
+     * 
      * @param ch
      * @return
      */
@@ -51,7 +51,7 @@ public class deAccent {
 
     /**
      * Bo dau 1 chuoi
-     *
+     * 
      * @param s
      * @return
      */
