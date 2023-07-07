@@ -31,6 +31,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import static utils.deAccent.removeAccent;
 import static utils.Configs.*;
 import static utils.Utils.createDialog;
 
@@ -156,8 +157,8 @@ public class ThietBiScreenHandler implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                String lowerCaseFilter = searchTextField.getText().toLowerCase();
-                if (person.getTen().toLowerCase().contains(lowerCaseFilter)) {
+                String lowerCaseFilter = removeAccent(searchTextField.getText().toLowerCase());
+                if (removeAccent(person.getTen().toLowerCase()).contains(lowerCaseFilter)) {
                     return true;
                 } else {
                     return false;
