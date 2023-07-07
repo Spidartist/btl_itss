@@ -1,6 +1,7 @@
 package views.screen.goitap;
 
 import static utils.Configs.DETAIL_GOI_TAP_VIEW_FXML;
+import static utils.Configs.GOI_TAP_SCREEN_PATH;
 import static utils.Configs.ROWS_PER_PAGE;
 import static utils.Utils.createDialog;
 import static utils.deAccent.removeAccent;
@@ -11,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import entity.model.GoiTap;
+import entity.model.HoiVien;
+import entity.model.NhanVien;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -24,6 +27,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -37,6 +42,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.GoiTapServices;
+import services.HoiVienServices;
+import services.NhanVienServices;
+import utils.ViewUtils;
+import views.screen.hoivien.HoiVienDetailScreenHandler;
+import views.screen.nhanvien.GoiTapDetailScreenHandler;
 
 public class GoiTapScreenHandler implements Initializable{
 
@@ -119,8 +129,8 @@ public class GoiTapScreenHandler implements Initializable{
 			createDialog(Alert.AlertType.WARNING, "Từ từ đã Bạn", "", "Vui lòng chọn một gói tập");
 		else {
 			controller.setGoiTap(selected);
-//			controller.setID(selected.getId());
-//			controller.hide_add_btn();
+			controller.setID(selected.getId());
+			controller.hide_add_btn();
 			controller.setTitle("Cập nhật thông tin gói tập");
 			stage.setScene(scene);
 		}
@@ -177,14 +187,52 @@ public class GoiTapScreenHandler implements Initializable{
     }
     
     @FXML
-    void addGoiTap(ActionEvent event) {
-
+    void addGoiTap(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(DETAIL_GOI_TAP_VIEW_FXML));
+		Parent studentViewParent = loader.load();
+		Scene scene = new Scene(studentViewParent);
+		GoiTapDetailScreenHandler controller = loader.getController();
+		controller.hide_update_btn();
+		stage.setScene(scene);
     }
 
     @FXML
     void deleteGoiTap(ActionEvent event) {
+    	GoiTap selected = tableView.getSelectionModel().getSelectedItem();
+		if (selected == null)
+			createDialog(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng chọn gói tập để tiếp tục", "");
+		else {
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Xác nhận xóa gói tập");
+			alert.setContentText("Bạn muốn xóa gói tập này?");
+			ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+			ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+			alert.getButtonTypes().setAll(okButton, noButton);
+			alert.showAndWait().ifPresent(type -> {
+				if (type == okButton) {
+					// Delete in Database
+					try {
+						int ID = selected.getId();
+						int result = GoiTapServices.deleteGoiTap(ID);
+						if (result == 1)
+							createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
+						else
+							createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");
+						ViewUtils viewUtils = new ViewUtils();
+						viewUtils.changeAnchorPane(basePane, GOI_TAP_SCREEN_PATH);
 
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				}
+			});
+		}
     }
+
 
     @SuppressWarnings("unchecked")
 	@FXML
