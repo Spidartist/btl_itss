@@ -39,18 +39,19 @@ public class NhanVienServices {
 	
     public static int deleteNhanVien(int ID) throws SQLException {
         String DELETE_QUERY =
-                "DELETE FROM phong_tap " +
+                "DELETE FROM nhan_vien " +
                         "WHERE ID =?";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(DELETE_QUERY);
         preparedStatement.setInt(1, ID);
         return preparedStatement.executeUpdate();
     }
     
-    public static int updateNhanVien(int ID, String tenPhongTap) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `phong_tap` SET `ten_phong`=? WHERE id = ?";
+    public static int updateNhanVien(int ID, int id_phong_tap, String hoVaTen) throws SQLException {
+		String UPDATE_QUERY = "UPDATE `nhan_vien` SET `id_phong_tap`=?,`ho_va_ten`=? WHERE ID=? ";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
-		preparedStatement.setString(1, tenPhongTap);
-		preparedStatement.setInt(2, ID);
+		preparedStatement.setInt(1, id_phong_tap);
+		preparedStatement.setString(2, hoVaTen);
+		preparedStatement.setInt(3, ID);
 		preparedStatement.execute();
 		return preparedStatement.executeUpdate();
 	}

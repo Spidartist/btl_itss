@@ -2,11 +2,8 @@ package views.screen.goitap;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import entity.model.GoiTap;
-import entity.model.goiTap;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +12,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.GoiTapServices;
-import services.PhongTapServices;
-import services.RoleServices;
 import utils.ViewUtils;
 
 public class GoiTapDetailScreenHandler {

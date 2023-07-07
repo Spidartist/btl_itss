@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import entity.model.GoiTap;
-import entity.model.GoiTap;
-import entity.model.NhanVien;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,8 +37,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.GoiTapServices;
-import services.NhanVienServices;
-import views.screen.nhanvien.GoiTapDetailScreenHandler;
 
 public class GoiTapScreenHandler implements Initializable{
 

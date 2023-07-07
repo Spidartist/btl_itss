@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import services.GeneralServices;
+import services.HoiVienServices;
 import services.NhanVienServices;
 import services.PhongTapServices;
 import services.RoleServices;
@@ -135,8 +136,41 @@ public class NhanVienDetailScreenHandler {
     }
 
     @FXML
-    void update(ActionEvent event) {
-
+    void update(ActionEvent event) throws IOException, SQLException {
+    	ViewUtils viewUtils = new ViewUtils();
+        if (hoVaTenTextField.getText().trim().equals("")) createDialog(
+                Alert.AlertType.WARNING,
+                "Thông báo",
+                "", "Vui lòng nhập đủ thông tin!");
+        else {
+            String hoVaTen = hoVaTenTextField.getText();
+            String phongTap = phongTapComboBox.getValue();
+            String vaiTro = roleComboBox.getValue();
+            int id_phong_tap = GeneralServices.getIdViaName("phong_tap", "ten_phong", phongTap);
+            int id_role = GeneralServices.getIdViaName("role", "ten_role", vaiTro);
+            try {
+                int result1 = NhanVienServices.updateNhanVien(ID, id_phong_tap, hoVaTen);
+                int result2 = TaiKhoanServices.updateRole(ID, id_role);
+                if (result1 == 1 && result2 == 1) {
+                    createDialog(
+                            Alert.AlertType.CONFIRMATION,
+                            "Thành công",
+                            "", "Cập nhật thông tin nhân viên thành công!"
+                    );
+                } else {
+                    createDialog(
+                            Alert.AlertType.ERROR,
+                            "Thất bại",
+                            "", "Có lỗi xảy ra, vui lòng thử lại!"
+                    );
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            viewUtils.switchToNhanVien(event);
+                
+            
+        }
     }
 
 

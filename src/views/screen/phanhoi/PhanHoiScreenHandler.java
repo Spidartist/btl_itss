@@ -1,6 +1,6 @@
 package views.screen.phanhoi;
 
-import static utils.Configs.DETAIL_HOI_VIEN_VIEW_FXML;
+import static utils.Configs.*;
 import static utils.Configs.ROWS_PER_PAGE;
 import static utils.Utils.createDialog;
 
@@ -9,7 +9,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import entity.model.HoiVien;
 import entity.model.PhanHoi;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -34,9 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import services.HoiVienServices;
 import services.PhanHoiServices;
-import views.screen.hoivien.HoiVienDetailScreenHandler;
 
 public class PhanHoiScreenHandler implements Initializable{
 
@@ -84,18 +81,18 @@ public class PhanHoiScreenHandler implements Initializable{
     public void detail(MouseEvent event) throws IOException {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(DETAIL_HOI_VIEN_VIEW_FXML));
+		loader.setLocation(getClass().getResource(DETAIL_PHAN_HOI_VIEW_FXML));
 		Parent studentViewParent = loader.load();
 		Scene scene = new Scene(studentViewParent);
 		PhanHoiDetailScreenHandler controller = loader.getController();
 		PhanHoi selected = tableView.getSelectionModel().getSelectedItem();
 		if (selected == null)
-			createDialog(Alert.AlertType.WARNING, "Từ từ đã Bạn", "", "Vui lòng chọn một hội viên");
+			createDialog(Alert.AlertType.WARNING, "Từ từ đã Bạn", "", "Vui lòng chọn một phản hồi");
 		else {
-			controller.setHoiVien(selected);
+			controller.setPhanHoi(selected);
 			controller.setID(selected.getId());
 			controller.hide_add_btn();
-			controller.setTitle("Cập nhật thông tin hội viên");
+			controller.setTitle("Cập nhật thông tin phản hồi");
 			stage.setScene(scene);
 		}
 	}
