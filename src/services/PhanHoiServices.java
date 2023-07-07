@@ -17,7 +17,7 @@ public class PhanHoiServices {
 	public static ObservableList<PhanHoi> getAllPhanHoi() throws SQLException {
 		
 		ObservableList<PhanHoi> phanHoiList = FXCollections.observableArrayList();
-        String SELECT_QUERY = "SELECT hoi_vien.id, hoi_vien.ho_ten, `noi_dung`, `hoi_dap` FROM `phan_hoi` JOIN hoi_vien ON phan_hoi.id_hoi_vien = hoi_vien.id";
+        String SELECT_QUERY = "SELECT phan_hoi.id, hoi_vien.ho_ten, `noi_dung`, `hoi_dap` FROM `phan_hoi` JOIN hoi_vien ON phan_hoi.id_hoi_vien = hoi_vien.id";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
         ResultSet result = preparedStatement.executeQuery();
         
@@ -28,6 +28,24 @@ public class PhanHoiServices {
         
         return phanHoiList;
     }
+	
+	public static int addPhanHoi(int id_hoi_vien, String phanHoi) throws SQLException {
+		String QUERY = "INSERT INTO `phan_hoi`(`id_hoi_vien`, `noi_dung`) VALUES (?, ?)";
+		
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+        preparedStatement.setInt(1, id_hoi_vien);
+        preparedStatement.setString(2, phanHoi);
+        return preparedStatement.executeUpdate();
+		
+	}
+	
+	public static int deletePhanHoi(int ID) throws SQLException {
+        String DELETE_QUERY = "DELETE FROM `phan_hoi` WHERE id = ?";
+                
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(DELETE_QUERY);
+        preparedStatement.setInt(1, ID);
+        return preparedStatement.executeUpdate();
+	}
 
 	public PhanHoiServices() {
 		// TODO Auto-generated constructor stub

@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entity.db.GymDB;
@@ -15,6 +16,18 @@ public class TaiKhoanServices {
         preparedStatement.setInt(2, id_role);
         return preparedStatement.executeUpdate();
     }
+	
+	public static String getNameViaUsername(String username) throws SQLException {
+		String QUERY = "SELECT nhan_vien.ho_va_ten AS Ho_Ten FROM nhan_vien JOIN tai_khoan ON nhan_vien.id = tai_khoan.id_nhan_vien WHERE tai_khoan.tai_khoan = ?\r\n"
+				+ "UNION\r\n"
+				+ "SELECT hoi_vien.ho_ten AS Ho_Ten FROM `hoi_vien` JOIN tai_khoan ON hoi_vien.id = tai_khoan.id_hoi_vien WHERE tai_khoan.tai_khoan = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, username);
+        ResultSet res = preparedStatement.executeQuery();
+        res.next();
+        return res.getString("Ho_Ten");
+	}
 	
 	public static int addTaiKhoanHoiVien(int id_role, int id_hoi_vien) throws SQLException {
 		

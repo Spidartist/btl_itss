@@ -109,7 +109,7 @@ public class AdminScreenHandler implements Initializable{
     }
     
     @FXML
-    void switchToPhanHoi() throws IOException {
+    public void switchToPhanHoi() throws IOException {
     	viewUtils.changeAnchorPane(basePane, PHAN_HOI_SCREEN_PATH);
     }
 
@@ -153,7 +153,6 @@ public class AdminScreenHandler implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		usernameLabel.setText(toUpperFirstLetter(userName));
-		DangKiTaiKhoanButton.setVisible(userRole.equals("1"));
 //		hoiVienLabel.setText("" + HoiVienServices.getTotalNhanKhau());
 //		phongTapLabel.setText("" + PhongTapServices.getTotalSoHoKhau());
 //		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanKhau());
