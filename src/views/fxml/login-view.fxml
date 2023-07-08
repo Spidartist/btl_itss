@@ -16,9 +16,9 @@
          <children>
             <AnchorPane layoutX="-10.0" layoutY="-4.0" prefHeight="406.0" prefWidth="316.0" styleClass="logo">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="304.0" fitWidth="319.0" layoutX="7.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/logo2_nobg.png" />
+                        <Image url="@../assets/img/logo.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
