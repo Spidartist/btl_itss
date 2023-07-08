@@ -2,12 +2,11 @@ package views.screen.lichsuditap;
 
 import static utils.Configs.ROWS_PER_PAGE;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import entity.model.HoiVien;
+import entity.db.GymDB;
 import entity.model.LichSuDiTap;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -20,17 +19,20 @@ import javafx.scene.Node;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
-import services.HoiVienServices;
 import services.LichSuDiTapServices;
+import services.PhanHoiServices;
+import services.TaiKhoanServices;
 
 public class LichSuDiTapScreenHandler implements Initializable{
+	
+	private String role = GymDB.getUserPreferences().get("role", "");
+	private String username = GymDB.getUserPreferences().get("username", "");
 
     @FXML
     private AnchorPane basePane;
@@ -79,7 +81,13 @@ public class LichSuDiTapScreenHandler implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			lichSuList = LichSuDiTapServices.getAllLichSu();
+			int id_role = Integer.parseInt(role);
+			if (id_role != 5) {
+				lichSuList = LichSuDiTapServices.getAllLichSu();
+			}else {
+				int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
+				lichSuList = LichSuDiTapServices.getAllLichSuUser(id_nguoi_dung);
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
