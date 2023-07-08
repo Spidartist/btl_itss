@@ -14,7 +14,7 @@ CREATE TABLE `thiet_bi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_phong_tap` int,
   `ten` varchar(30),
-  `ngay_nhap_ve` varchar(30),
+  `ngay_nhap_ve` date,
   `xuat_xu` varchar(30),
   `tinh_trang` varchar(30)
 );
