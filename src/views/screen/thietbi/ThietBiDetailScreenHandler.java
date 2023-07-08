@@ -127,8 +127,8 @@ public class ThietBiDetailScreenHandler implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tinhTrangChoiceBox.getItems().add("Hỏng");
-        tinhTrangChoiceBox.getItems().add("Vẫn còn dùng được");
-        tinhTrangChoiceBox.setValue("Vẫn còn dùng được");
+        tinhTrangChoiceBox.getItems().add("Còn sử dùng được");
+        tinhTrangChoiceBox.setValue("Còn sử dùng được");
         ObservableList<PhongTap> phongTapList;
         try {
             phongTapList = PhongTapServices.getAllPhongTap();

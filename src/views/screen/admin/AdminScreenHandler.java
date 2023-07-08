@@ -17,17 +17,23 @@ import static utils.Utils.toUpperFirstLetter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import entity.db.GymDB;
+import entity.model.ThietBi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import services.GeneralServices;
 import services.GoiTapServices;
 import services.HoiVienServices;
 import services.NhanVienServices;
@@ -50,7 +56,7 @@ public class AdminScreenHandler implements Initializable{
     private Button dangXuatButton;
 
     @FXML
-    private BarChart<?, ?> facilityChart;
+    private BarChart facilityChart;
 
     @FXML
     private Button goiTapButton;
@@ -285,26 +291,28 @@ public class AdminScreenHandler implements Initializable{
 		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanVien());
 		goiTapLabel.setText(""+GoiTapServices.getTotalGoiTap());
 		thietBiLabel.setText(""+ThietBiServices.getTotalThietBi());
-//		ResultSet result = null;
 
-//		List<LoaiCoSoVatChat> listCoSoVatChat = CoSoVatChatServices.getStatisticCSVC();
-//
-//		XYChart.Series<String, Number> seriesConDungDuoc = new XYChart.Series<>();
-//
-//		XYChart.Series<String, Number> seriesHong = new XYChart.Series<>();
-//		seriesHong.setName("Hỏng");
-//		for (LoaiCoSoVatChat loaiCSVC : listCoSoVatChat) {
-//			if (loaiCSVC.getTinhTrang().equals(CON_DUNG_DUOC)) {
-//
-//				seriesConDungDuoc.getData().add(new XYChart.Data<>(loaiCSVC.getLoaiDoDung(), loaiCSVC.getSoLuong()));
-//			} else {
-//				seriesHong.getData().add(new XYChart.Data<>(loaiCSVC.getLoaiDoDung(), loaiCSVC.getSoLuong()));
-//			}
-//		}
-//		seriesConDungDuoc.setName("Còn dùng được");
-//
-//		// Đặt dữ liệu cho StackedBarChart
-//		facilityChart.getData().addAll(seriesConDungDuoc, seriesHong);
+		ArrayList<Integer> idList;
+		try {
+			idList = ThietBiServices.getNumberDistinct();
+			XYChart.Series<String, Number> seriesConDungDuoc = new XYChart.Series<>();
+			
+			XYChart.Series<String, Number> seriesHong = new XYChart.Series<>();
+			seriesHong.setName("Hỏng");
+			
+			for (int i=0;i<idList.size();i++) {
+				String tenThietBi = ThietBiServices.getNameViaId(idList.get(i));
+				seriesConDungDuoc.getData().add(new XYChart.Data<>(tenThietBi, ThietBiServices.getCountStatus(tenThietBi, "Còn sử dụng được")));
+				seriesHong.getData().add(new XYChart.Data<>(tenThietBi, ThietBiServices.getCountStatus(tenThietBi, "Hỏng")));
+			}
+			seriesConDungDuoc.setName("Còn sử dùng được");
+			// Đặt dữ liệu cho StackedBarChart
+			facilityChart.getData().addAll(seriesConDungDuoc, seriesHong);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 		
 	}

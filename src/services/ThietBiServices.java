@@ -1,16 +1,16 @@
 package services;
 
-import entity.db.GymDB;
-import entity.model.PhongTap;
-import entity.model.ThietBi;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static utils.Utils.convertDate;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import static utils.Utils.convertDate;
+import entity.db.GymDB;
+import entity.model.ThietBi;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ThietBiServices {
 	
@@ -27,6 +27,42 @@ public class ThietBiServices {
 	        return -1; // or throw an exception, return a default value, etc.
 	    }
 	}
+	
+	public static String getNameViaId(int id) throws SQLException {
+	    String SELECT_QUERY = "SELECT thiet_bi.ten FROM thiet_bi WHERE id = ?";
+	    PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+	    preparedStatement.setInt(1, id);
+	    ResultSet result = preparedStatement.executeQuery();
+
+	    result.next();
+	    return result.getString("ten");
+	}
+	
+	public static int getCountStatus(String name, String status) throws SQLException {
+	    String SELECT_QUERY = "SELECT COUNT(DISTINCT id) as cnt FROM thiet_bi WHERE ten = ? AND tinh_trang = ?";
+	    PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+	    preparedStatement.setString(1, name);
+	    preparedStatement.setString(2, status);
+	    ResultSet result = preparedStatement.executeQuery();
+
+	    result.next();
+	    return result.getInt("cnt");
+	}
+	
+//    public static List<ThietBi> getStatisticCSVC() {
+//    	List<ThietBi>result = new ArrayList<ThietBi>();
+//        String GET_QUERY = "SELECT LoaiDoDung, TinhTrang, COUNT(*) AS SoLuong FROM cosovatchat GROUP BY LoaiDoDung, TinhTrang;";
+//        try {
+//            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                result.add(new ThietBi(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3)));
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return result;
+//    }
 	
     public static int getTotalThietBi() {
         int total = 0;
@@ -111,6 +147,21 @@ public class ThietBiServices {
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(DELETE_QUERY);
 		preparedStatement.setInt(1, ID);
 		return preparedStatement.executeUpdate();
+	}
+	
+	public static ArrayList<Integer> getNumberDistinct() throws SQLException {
+		ArrayList<Integer> idList = new ArrayList<Integer>();
+		ArrayList<String> nameList = new ArrayList<String>();
+		String QUERY = "SELECT thiet_bi.id, thiet_bi.ten FROM thiet_bi";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+		ResultSet res = preparedStatement.executeQuery();
+		while(res.next()) {
+			if (!nameList.contains(res.getString("ten"))){
+				nameList.add(res.getString("ten"));
+				idList.add(Integer.valueOf(res.getInt("id")));
+			}
+		}
+		return idList;
 	}
 
 	public static int updateThietBi(int ID, int idRoom, String ten, String ngayNhapVe, String xuatXu, String tinhTrang) throws SQLException {
