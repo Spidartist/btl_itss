@@ -44,14 +44,6 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#yeuCauUpdateMK" prefHeight="27.0" prefWidth="171.0" styleClass="btn" text="Yêu cầu cập nhật MK" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
             <Button mnemonicParsing="false" onAction="#deleteHoiVien" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />

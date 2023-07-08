@@ -1,7 +1,7 @@
 package views.screen.admin;
 
 import static utils.Configs.ADMIN_SCREEN_PATH;
-import static utils.Configs.DANG_KI_USER_SCREEN_PATH;
+import static utils.Configs.*;
 import static utils.Configs.GOI_TAP_DA_DANG_KI_SCREEN_PATH;
 import static utils.Configs.GOI_TAP_SCREEN_PATH;
 import static utils.Configs.HOI_VIEN_SCREEN_PATH;
@@ -42,6 +42,9 @@ public class AdminScreenHandler implements Initializable{
 	
     @FXML
     private VBox VBoxButton;
+    
+    @FXML
+    private Button thayDoiMatKhauButton;
 
     @FXML
     private Button dangXuatButton;
@@ -99,12 +102,6 @@ public class AdminScreenHandler implements Initializable{
 
     @FXML
     private Label usernameLabel;
-
-
-    @FXML
-    public void switchToDangKiTaiKhoan() throws IOException {
-    	viewUtils.changeAnchorPane(basePane, DANG_KI_USER_SCREEN_PATH);
-    }
 
     @FXML
     public void switchToGoiTap() throws IOException {
@@ -165,6 +162,16 @@ public class AdminScreenHandler implements Initializable{
     @FXML
     void switchToLogin(ActionEvent event) throws IOException {
     	viewUtils.changeScene(event, LOGIN_PATH);
+    }
+    
+    @FXML
+    public void switchToDangKiTaiKhoan() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, DANG_KI_USER_SCREEN_PATH);
+    }
+    
+    @FXML
+    void switchToThayDoiMatKhau(ActionEvent event) throws IOException {
+    	viewUtils.changeAnchorPane(basePane, THAY_DOI_MAT_KHAU_SCREEN_PATH);
     }
 
 	// Save user role

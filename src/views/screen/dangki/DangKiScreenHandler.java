@@ -1,27 +1,17 @@
 package views.screen.dangki;
 
+import static utils.Configs.ADMIN_SCREEN_PATH;
+import static utils.Utils.createDialog;
+
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-import static utils.Utils.*;
-import static utils.ViewUtils.*;
-import static utils.Configs.*;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import services.GeneralServices;
-import services.RoleServices;
 import services.TaiKhoanServices;
 import utils.ViewUtils;
 

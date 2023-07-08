@@ -50,6 +50,15 @@ public class TaiKhoanServices {
         return preparedStatement.executeUpdate();
     }
 	
+	public static int updateMatKhauVidID(int id_tai_khoan, String newPassword) throws SQLException {
+		
+        String QUERY = "UPDATE `tai_khoan` SET `mat_khau`=? WHERE id=?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+        preparedStatement.setString(1, newPassword);
+        preparedStatement.setInt(2, id_tai_khoan);
+        return preparedStatement.executeUpdate();
+    }
+	
 	public static int updateTaiKhoanNhanVien(String tai_khoan, String mat_khau, int id_nhan_vien) throws SQLException {
 		
         String INSERT_QUERY = "UPDATE `tai_khoan` SET `tai_khoan`=?,`mat_khau`=? WHERE tai_khoan.id_nhan_vien = ?";

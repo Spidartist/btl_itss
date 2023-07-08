@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import views.screen.admin.AdminScreenHandler;
 import views.screen.dangki.DangKiScreenHandler;
 import views.screen.nhanvien.NhanVienDetailScreenHandler;
+import views.screen.thaydoimatkhau.ThayDoiMatKhauScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
