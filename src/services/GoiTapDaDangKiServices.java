@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import entity.db.GymDB;
 import entity.model.GoiTapDaDangKi;
+import entity.model.ThongKeGoiTap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -29,6 +30,38 @@ public class GoiTapDaDangKiServices {
 	    }
 
 	    return goiTapList;
+	}
+	
+	public static ObservableList<ThongKeGoiTap> getAllCountDangKi() throws SQLException{
+		ObservableList<ThongKeGoiTap> thongKeList = FXCollections.observableArrayList();
+		String QUERY = "SELECT goi_tap.ten_goi_tap, goi_tap.loai_goi_tap, COUNT(goi_tap.id) AS so_luong FROM dang_ki_goi_tap JOIN goi_tap ON dang_ki_goi_tap.id_goi_tap = goi_tap.id GROUP BY goi_tap.id ";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while (result.next()) {
+	        thongKeList.add(new ThongKeGoiTap(result.getString("ten_goi_tap") + " - " + result.getString("loai_goi_tap"), result.getInt("so_luong")));
+	 
+	    }
+		return thongKeList;
+	}
+	
+	
+	public static ObservableList<ThongKeGoiTap> getAllDangKi(String fromDate, String toDate) throws SQLException{
+		ObservableList<ThongKeGoiTap> thongKeList = FXCollections.observableArrayList();
+		String QUERY = "SELECT goi_tap.ten_goi_tap, goi_tap.loai_goi_tap, COUNT(goi_tap.id) AS so_luong FROM dang_ki_goi_tap JOIN goi_tap ON dang_ki_goi_tap.id_goi_tap = goi_tap.id \r\n"
+				+ "WHERE dang_ki_goi_tap.ngay_dang_ki >= ?\r\n"
+				+ "AND dang_ki_goi_tap.ngay_dang_ki <= ?\r\n"
+				+ "GROUP BY goi_tap.id ";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+		preparedStatement.setString(1, fromDate);
+		preparedStatement.setString(2, toDate);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while (result.next()) {
+	        thongKeList.add(new ThongKeGoiTap(result.getString("ten_goi_tap") + " - " + result.getString("loai_goi_tap"), result.getInt("so_luong")));
+	 
+	    }
+		return thongKeList;
 	}
 	
 	
