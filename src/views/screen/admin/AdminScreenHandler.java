@@ -238,20 +238,11 @@ public class AdminScreenHandler implements Initializable{
 			goiTapButton.setVisible(false);
 			goiTapButton.setManaged(false);
 			
-			thuPhiButton.setVisible(false);
-			thuPhiButton.setManaged(false);
-			
 			phanHoiButton.setVisible(false);
 			phanHoiButton.setManaged(false);
 			
 			thongKeButton.setVisible(false);
 			thongKeButton.setManaged(false);
-			
-			goiTapDaDangKiButton.setVisible(false);
-			goiTapDaDangKiButton.setManaged(false);
-			
-			lichSuDiTapButton.setVisible(false);
-			lichSuDiTapButton.setManaged(false);
 			
 			break;
 		case 5: // Hội viên
