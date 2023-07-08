@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.thuphi.ThuPhiScreenHandler">
+<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.thuphi.ThuPhiScreenHandler">
    <children>
       <Text layoutX="38.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu Phí" textAlignment="CENTER" wrappingWidth="140.9140625">
          <font>
@@ -19,16 +19,17 @@
          </font>
       </Text>
       <Pagination fx:id="pagination" layoutX="38.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="433.0" prefWidth="577.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="577.0" stylesheets="@../styles/table.css">
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="578.0" stylesheets="@../styles/table.css">
          <columns>
-            <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
-            <TableColumn fx:id="tenHoiVienColumn" prefWidth="155.5" text="Tên hội viên" />
-            <TableColumn fx:id="tenGoiTapColumn" prefWidth="131.5" text="Tên gói tập" />
-            <TableColumn fx:id="soTienColumn" prefWidth="104.5" text="Số tiền" />
-            <TableColumn fx:id="loaiPhiColumn" prefWidth="153.0" text="Loại phí" />
+            <TableColumn fx:id="indexColumn" prefWidth="31.2" text="#" />
+            <TableColumn fx:id="tenHoiVienColumn" prefWidth="120.0" text="Tên hội viên" />
+            <TableColumn fx:id="tenGoiTapColumn" prefWidth="120.0" text="Tên gói tập" />
+            <TableColumn fx:id="soTienColumn" prefWidth="80.0" text="Số tiền" />
+            <TableColumn fx:id="loaiPhiColumn" prefWidth="120.0" text="Loại phí" />
+            <TableColumn fx:id="ngayThuPhiColumn" prefWidth="120.0" text="Ngày thu phí" />
          </columns>
       </TableView>
-      <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">
+      <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên hội viên">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
