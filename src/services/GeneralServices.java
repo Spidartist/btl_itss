@@ -9,7 +9,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class GeneralServices {
-	
+
+	public static int getIdVia2Condition (String tableName, String col1, String col2, String text1, String text2) throws SQLException {
+		String SELECT_QUERY = String.format("SELECT `id` FROM %s WHERE %s = ? AND %s = ?", tableName, col1, col2);
+
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+		preparedStatement.setString(1, text1);
+		preparedStatement.setString(2, text2);
+		ResultSet result = preparedStatement.executeQuery();
+		result.next();
+		return result.getInt("id");
+	}
 	public static int getIdViaName(String tableName, String colName, String name) throws SQLException {
         String SELECT_QUERY = String.format("SELECT `id` FROM %s WHERE %s = ?", tableName, colName);
 
