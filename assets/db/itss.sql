@@ -59,7 +59,7 @@ CREATE TABLE `thu_phi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
-  `ngay_thu_phi` varchar(30)
+  `ngay_thu_phi` date
 );
 
 CREATE TABLE `role` (  
