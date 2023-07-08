@@ -1,14 +1,18 @@
 package services;
 
+import static utils.Utils.convertDate;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 import entity.db.GymDB;
 import entity.model.GoiTap;
+import entity.model.HoiVien;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -125,5 +129,25 @@ public class GoiTapServices {
 		preparedStatement.execute();
 		return preparedStatement.executeUpdate();
 	}
+
+
+	public static ObservableList<GoiTap> findGoiTap(int idGoiTap) throws SQLException {
+		ObservableList<GoiTap> goiTapList = FXCollections.observableArrayList();
+
+		 String SELECT_QUERY =
+	                "SELECT * FROM goi_tap " +
+	                        "WHERE ID =?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, idGoiTap);
+        ResultSet result = preparedStatement.executeQuery();
+	        
+
+        while (result.next()) {
+            goiTapList.add(new GoiTap(result.getInt("id"), result.getInt("so_tien"),
+                    result.getString("ten_goi_tap"), result.getString("loai_goi_tap")));
+        }
+
+        return goiTapList;
+    }
 	
 }
