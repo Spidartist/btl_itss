@@ -16,8 +16,8 @@
             <Font name="Segoe UI" size="24.0" />
          </font>
       </Text>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="433.0" prefWidth="577.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="739.0" stylesheets="@../styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="128.0" maxPageIndicatorCount="5" prefHeight="439.0" prefWidth="740.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
             <TableColumn fx:id="hoVaTenColumn" prefWidth="150.0" text="Họ và tên hội viên" />

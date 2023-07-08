@@ -44,7 +44,7 @@ public static ObservableList<LichSuDiTap> getAllLichSuUser(int idHoiVien, String
         		+ "JOIN hoi_vien ON hoi_vien.id = lich_su.id_hoi_vien\r\n"
         		+ "JOIN goi_tap ON goi_tap.id = lich_su.id_goi_tap\r\n"
         		+ "JOIN phong_tap ON phong_tap.id = lich_su.id_phong_tap\r\n"
-        		+ "WHERE hoi_vien.id = 1 \r\n"
+        		+ "WHERE hoi_vien.id = ? \r\n"
         		+ "AND (ngay_su_dung >= ? OR ? IS NULL)\r\n"
         		+ "AND (ngay_su_dung <= ? OR ? IS NULL)";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
