@@ -5,11 +5,13 @@ import static utils.Utils.createDialog;
 import static utils.deAccent.removeAccent;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 import entity.model.GoiTap;
 import entity.model.GoiTapDaDangKi;
@@ -21,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -37,7 +40,8 @@ import services.GoiTapServices;
 import services.HoiVienServices;
 import utils.ViewUtils;
 
-public class GoiTapDaDangKiDetailScreenHandler {
+@SuppressWarnings("unused")
+public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
 	private int ID;
 
     @FXML
@@ -61,6 +65,43 @@ public class GoiTapDaDangKiDetailScreenHandler {
     @FXML
     private Button update_btn;
 
+    public void initialize(URL location, ResourceBundle resources) {
+        // Add a listener to the text field
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+				search();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        });
+    }
+
+    private void search() throws SQLException {
+        String searchText = searchTextField.getText();
+        System.out.println("Searching for: " + searchText);
+
+        ObservableList<HoiVien> stringList = HoiVienServices.getAllHoiVien();
+        ObservableList<String> nameList = getAllName(stringList);
+
+        // Filter the nameList based on the searchText
+        ObservableList<String> filteredNameList = FXCollections.observableArrayList();
+        for (String name : nameList) {
+        	String searchText_tmp = removeAccent(searchText.toLowerCase());
+            if (removeAccent(name.toLowerCase()).contains(searchText)) {
+                filteredNameList.add(name);
+            }
+        }
+
+        hoiVienComboBox.setItems(filteredNameList);
+        try {
+        	hoiVienComboBox.setPromptText(filteredNameList.get(0));
+        } catch (Exception e){
+        	hoiVienComboBox.setPromptText("");
+        }
+        hoiVienComboBox.show();
+    }
+    
     @FXML
     void addDangKiGoiTap(ActionEvent event) throws IOException{
     	 ViewUtils viewUtils = new ViewUtils();
@@ -153,78 +194,7 @@ public class GoiTapDaDangKiDetailScreenHandler {
         }
         
     }
-    @FXML
-    public void search(MouseEvent event) {
-		FilteredList<GoiTap> filteredData = new FilteredList<>(goiTapList, p -> true);
-		searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-			filteredData.setPredicate(person -> {
-				if (newValue == null || newValue.isEmpty()) {
-					return true;
-				}
-				String lowerCaseFilter = removeAccent(searchTextField.getText().toLowerCase());
-				if (removeAccent(person.getTenGoiTap().toLowerCase()).contains(lowerCaseFilter)) {
-					return true;
-				} else {
-					return false;
-				}
-			});
-			int soDu = filteredData.size() % ROWS_PER_PAGE;
-			if (soDu != 0)
-				pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
-			else
-				pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
-			pagination.setMaxPageIndicatorCount(5);
-			pagination.setPageFactory(pageIndex -> {
-				indexColumn.setCellValueFactory(
-						(Callback<TableColumn.CellDataFeatures<GoiTap, GoiTap>, ObservableValue<GoiTap>>) p -> new ReadOnlyObjectWrapper(
-								p.getValue()));
 
-				indexColumn
-						.setCellFactory(new Callback<TableColumn<GoiTap, GoiTap>, TableCell<GoiTap, GoiTap>>() {
-							@Override
-							public TableCell<GoiTap, GoiTap> call(TableColumn<GoiTap, GoiTap> param) {
-								return new TableCell<GoiTap, GoiTap>() {
-									@Override
-									protected void updateItem(GoiTap item, boolean empty) {
-										super.updateItem(item, empty);
-
-										if (this.getTableRow() != null && item != null) {
-											setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
-										} else {
-											setText("");
-										}
-									}
-								};
-							}
-						});
-				indexColumn.setSortable(false);
-		        tenGoiTapColumn.setCellValueFactory(new PropertyValueFactory<GoiTap, String>("tenGoiTap"));
-		        loaiGoiTapColumn.setCellValueFactory(new PropertyValueFactory<GoiTap, String>("loaiGoiTap"));
-		        soTienColumn.setCellValueFactory(new PropertyValueFactory<GoiTap, String>("soTien"));
-				int lastIndex = 0;
-				int displace = filteredData.size() % ROWS_PER_PAGE;
-				if (displace > 0) {
-					lastIndex = filteredData.size() / ROWS_PER_PAGE;
-				} else {
-					lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
-				}
-				// Add goitap to table
-				if (filteredData.isEmpty())
-					tableView.setItems(FXCollections.observableArrayList(filteredData));
-				else {
-					if (lastIndex == pageIndex && displace > 0) {
-						tableView.setItems(FXCollections.observableArrayList(
-								filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
-					} else {
-						tableView.setItems(FXCollections.observableArrayList(filteredData
-								.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
-					}
-				}
-				return tableView;
-			});
-		});
-
-	}
 
     public void setGoiTapDaDangKi(GoiTapDaDangKi goiTap) throws SQLException {
 		String dateString = goiTap.getNgayDangKi();
