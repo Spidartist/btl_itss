@@ -29,6 +29,18 @@ public class TaiKhoanServices {
         return res.getString("Ho_Ten");
 	}
 	
+	public static int getIDViaUsername(String username) throws SQLException {
+		String QUERY = "SELECT nhan_vien.id AS ID FROM nhan_vien JOIN tai_khoan ON nhan_vien.id = tai_khoan.id_nhan_vien WHERE tai_khoan.tai_khoan = ?\r\n"
+				+ "UNION\r\n"
+				+ "SELECT hoi_vien.id AS ID FROM `hoi_vien` JOIN tai_khoan ON hoi_vien.id = tai_khoan.id_hoi_vien WHERE tai_khoan.tai_khoan = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, username);
+        ResultSet res = preparedStatement.executeQuery();
+        res.next();
+        return res.getInt("ID");
+	}
+	
 	public static int addTaiKhoanHoiVien(int id_role, int id_hoi_vien) throws SQLException {
 		
         String INSERT_QUERY = "INSERT INTO `tai_khoan`(`id_hoi_vien`, `id_role`) VALUES (?, ?)";

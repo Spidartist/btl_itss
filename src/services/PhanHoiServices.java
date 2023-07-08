@@ -29,6 +29,22 @@ public class PhanHoiServices {
         return phanHoiList;
     }
 	
+	public static ObservableList<PhanHoi> getAllPhanHoiUser(int id_nguoi_dung) throws SQLException {
+		
+		ObservableList<PhanHoi> phanHoiList = FXCollections.observableArrayList();
+        String SELECT_QUERY = "SELECT phan_hoi.id, hoi_vien.ho_ten, `noi_dung`, `hoi_dap` FROM `phan_hoi` JOIN hoi_vien ON phan_hoi.id_hoi_vien = hoi_vien.id WHERE hoi_vien.id=?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, id_nguoi_dung);
+        ResultSet result = preparedStatement.executeQuery();
+        
+        while (result.next()) {
+        	phanHoiList.add(new PhanHoi(result.getInt("id"), result.getString("ho_ten"), result.getString("noi_dung"),
+        			result.getString("hoi_dap")));
+		}
+        
+        return phanHoiList;
+    }
+	
 	public static int addPhanHoi(int id_hoi_vien, String phanHoi) throws SQLException {
 		String QUERY = "INSERT INTO `phan_hoi`(`id_hoi_vien`, `noi_dung`) VALUES (?, ?)";
 		

@@ -22,9 +22,9 @@
       <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="577.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
-            <TableColumn fx:id="hoVaTenColumn" prefWidth="222.0" text="Họ và tên hội viên" />
-            <TableColumn fx:id="noiDungColumn" prefWidth="178.0" text="Nội dung phản hồi" />
-            <TableColumn fx:id="hoiDapColumn" prefWidth="144.5" text="Hồi đáp của quản lý" />
+            <TableColumn fx:id="hoVaTenColumn" prefWidth="166.5" text="Họ và tên hội viên" />
+            <TableColumn fx:id="noiDungColumn" prefWidth="193.0" text="Nội dung phản hồi" />
+            <TableColumn fx:id="hoiDapColumn" prefWidth="185.0" text="Hồi đáp của quản lý" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">

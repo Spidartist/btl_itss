@@ -40,11 +40,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.PhanHoiServices;
+import services.TaiKhoanServices;
 import utils.ViewUtils;
 
 public class PhanHoiScreenHandler implements Initializable{
 	
 	private String role = GymDB.getUserPreferences().get("role", "");
+	private String username = GymDB.getUserPreferences().get("username", "");
 
     @FXML
     private AnchorPane basePane;
@@ -210,13 +212,17 @@ public class PhanHoiScreenHandler implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		int id_role = Integer.parseInt(role);
-		if (id_role != 5) {
-			addBtn.setVisible(false);
-			deleteBtn.setVisible(false);
-		}
+		
 		try {
-			phanHoiList = PhanHoiServices.getAllPhanHoi();
+			int id_role = Integer.parseInt(role);
+			if (id_role != 5) {
+				addBtn.setVisible(false);
+				deleteBtn.setVisible(false);
+				phanHoiList = PhanHoiServices.getAllPhanHoi();
+			}else {
+				int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
+				phanHoiList = PhanHoiServices.getAllPhanHoiUser(id_nguoi_dung);
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

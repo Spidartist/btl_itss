@@ -87,6 +87,7 @@ public class PhanHoiDetailScreenHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	hoiDapText.setEditable(false);
     }
 
     @FXML
