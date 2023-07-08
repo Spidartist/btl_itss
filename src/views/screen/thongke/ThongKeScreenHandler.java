@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import services.GoiTapDaDangKiServices;
+import services.ThuPhiServices;
 
 public class ThongKeScreenHandler implements Initializable{
 	
@@ -61,6 +62,8 @@ public class ThongKeScreenHandler implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
+			doanhThuTextField.setEditable(false);
+			doanhThuTextField.setText(Integer.toString(ThuPhiServices.getAllSumPhi()));
 			lichSuList = GoiTapDaDangKiServices.getAllCountDangKi();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,6 +81,7 @@ public class ThongKeScreenHandler implements Initializable{
 		toDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
     		this.toDate = newValue.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			try {
+				doanhThuTextField.setText(Integer.toString(ThuPhiServices.getSumPhi(this.fromDate, this.toDate)));
 				lichSuList = GoiTapDaDangKiServices.getAllDangKi(this.fromDate, this.toDate);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -95,6 +99,7 @@ public class ThongKeScreenHandler implements Initializable{
 		fromDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
     		this.fromDate = newValue.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			try {
+				doanhThuTextField.setText(Integer.toString(ThuPhiServices.getSumPhi(this.fromDate, this.toDate)));
 				lichSuList = GoiTapDaDangKiServices.getAllDangKi(this.fromDate, this.toDate);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
