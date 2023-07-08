@@ -59,7 +59,7 @@ CREATE TABLE `thu_phi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
-  `ngay_thu_phi` date
+  `ngay_thu_phi` varchar(30)
 );
 
 CREATE TABLE `role` (  
@@ -185,10 +185,10 @@ INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES
 INSERT INTO `lich_su`(`id_hoi_vien`, `id_goi_tap`, `id_phong_tap`, `ngay_su_dung`) VALUES
 (1, 2, 1, "2023-07-07"),
 (1, 2, 2, "2023-07-08"),
-(1, 2, 1, "2023-07-09"),
-(1, 2, 3, "2023-07-10"),
-(1, 2, 1, "2023-07-11"),
-(2, 6, 1, "2023-07-07");
+(3, 5, 1, "2023-08-09"),
+(3, 5, 3, "2023-08-10"),
+(4, 8, 1, "2023-06-11"),
+(2, 6, 1, "2023-06-07");
 
 
 COMMIT;
