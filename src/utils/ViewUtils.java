@@ -138,7 +138,7 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToThuPhi();
+        controller.switchToPhanHoi();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

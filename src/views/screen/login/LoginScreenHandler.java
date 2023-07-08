@@ -25,6 +25,8 @@ import static entity.db.GymDB.*;
 
 public class LoginScreenHandler {
 	
+//	public static Preferences userPreferences = Preferences.userRoot();
+	
     @FXML
     private Button buttonLogin;
 
@@ -48,9 +50,10 @@ public class LoginScreenHandler {
         }   else {
         	ResultSet result = Authentication.authentication(username, password);
             if (result.next()) {
-                Preferences userPreferences = Preferences.userRoot();
-                userPreferences.put("role", result.getString(6));
-                userPreferences.put("username", result.getString(2));
+//                Preferences userPreferences = Preferences.userRoot();
+                GymDB.getUserPreferences().put("role", result.getString(6));
+                GymDB.getUserPreferences().put("username", result.getString(2));
+                System.out.println(GymDB.getUserPreferences().get("role", ""));
                 ViewUtils viewUtils = new ViewUtils();
                 viewUtils.changeScene(event, ADMIN_SCREEN_PATH);
             } else {

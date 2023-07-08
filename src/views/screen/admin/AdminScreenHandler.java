@@ -19,6 +19,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import services.GoiTapServices;
 import services.HoiVienServices;
@@ -27,22 +28,30 @@ import services.PhongTapServices;
 import services.ThietBiServices;
 import services.ThuPhiServices;
 import utils.ViewUtils;
+import views.screen.login.LoginScreenHandler;
+
 import static utils.Utils.toUpperFirstLetter;
 import static utils.Configs.*;
 
 public class AdminScreenHandler implements Initializable{
 
 	@FXML
-    private Button DangKiTaiKhoanButton;
+    private AnchorPane basePane;
+	
+    @FXML
+    private VBox VBoxButton;
 
     @FXML
-    private AnchorPane basePane;
+    private Button dangXuatButton;
 
     @FXML
     private BarChart<?, ?> facilityChart;
 
     @FXML
     private Button goiTapButton;
+
+    @FXML
+    private Button goiTapDaDangKiButton;
 
     @FXML
     private Label goiTapLabel;
@@ -54,10 +63,16 @@ public class AdminScreenHandler implements Initializable{
     private Label hoiVienLabel;
 
     @FXML
+    private Button lichSuDiTapButton;
+
+    @FXML
     private Button nhanVienButton;
 
     @FXML
     private Label nhanVienLabel;
+
+    @FXML
+    private Button phanHoiButton;
 
     @FXML
     private Button phongTapButton;
@@ -82,6 +97,7 @@ public class AdminScreenHandler implements Initializable{
 
     @FXML
     private Label usernameLabel;
+
 
     @FXML
     public void switchToDangKiTaiKhoan() throws IOException {
@@ -109,7 +125,7 @@ public class AdminScreenHandler implements Initializable{
     }
     
     @FXML
-    void switchToPhanHoi() throws IOException {
+    public void switchToPhanHoi() throws IOException {
     	viewUtils.changeAnchorPane(basePane, PHAN_HOI_SCREEN_PATH);
     }
 
@@ -142,18 +158,120 @@ public class AdminScreenHandler implements Initializable{
     public void switchToTrangChu(ActionEvent event) throws IOException {
     	viewUtils.changeScene(event, ADMIN_SCREEN_PATH);
     }
+    
+
+    @FXML
+    void switchToLogin(ActionEvent event) throws IOException {
+    	viewUtils.changeScene(event, LOGIN_PATH);
+    }
 
 	// Save user role
-	private static final Preferences userPreferences = Preferences.userRoot();
-	public static final String userRole = userPreferences.get("role", "");
-	public static final String userName = userPreferences.get("username", "");
+//	private static Preferences userPreferences = Preferences.userRoot();
+//	public static String userRole = userPreferences.get("role", "");
+//	public static String userName = userPreferences.get("username", "");
 	private final ViewUtils viewUtils = new ViewUtils();
 	private Connection conn = GymDB.getConnection();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		String userName = GymDB.getUserPreferences().get("username", "");
+		int id_role = Integer.parseInt(GymDB.getUserPreferences().get("role", ""));
+		
+		hoiVienButton.setVisible(true);
+		phongTapButton.setVisible(true);
+		thietBiButton.setVisible(true);
+		nhanVienButton.setVisible(true);
+		goiTapButton.setVisible(true);
+		thuPhiButton.setVisible(true);
+		phanHoiButton.setVisible(true);
+		thongKeButton.setVisible(true);
+		goiTapDaDangKiButton.setVisible(true);
+		lichSuDiTapButton.setVisible(true);
+		
+		// Phân quyền:
+		switch (id_role) {
+		case 1: // Chủ phòng gym
+			
+			break;
+		case 2: // Quản lý 
+			phongTapButton.setVisible(false);
+			phongTapButton.setManaged(false);
+
+			nhanVienButton.setVisible(false);
+			nhanVienButton.setManaged(false);
+			
+			goiTapButton.setVisible(false);
+			goiTapButton.setManaged(false);
+			break;
+		case 3: // Huấn luyện viên
+			phongTapButton.setVisible(false);
+			phongTapButton.setManaged(false);
+			
+			thietBiButton.setVisible(false);
+			thietBiButton.setManaged(false);
+			
+			nhanVienButton.setVisible(false);
+			nhanVienButton.setManaged(false);
+			
+			goiTapButton.setVisible(false);
+			goiTapButton.setManaged(false);
+			
+			thuPhiButton.setVisible(false);
+			thuPhiButton.setManaged(false);
+			
+			phanHoiButton.setVisible(false);
+			phanHoiButton.setManaged(false);
+			
+			thongKeButton.setVisible(false);
+			thongKeButton.setManaged(false);
+			break;
+		case 4: // Nhân viên
+			phongTapButton.setVisible(false);
+			phongTapButton.setManaged(false);
+			
+			thietBiButton.setVisible(false);
+			thietBiButton.setManaged(false);
+			
+			nhanVienButton.setVisible(false);
+			nhanVienButton.setManaged(false);
+			
+			goiTapButton.setVisible(false);
+			goiTapButton.setManaged(false);
+			
+			phanHoiButton.setVisible(false);
+			phanHoiButton.setManaged(false);
+			
+			thongKeButton.setVisible(false);
+			thongKeButton.setManaged(false);
+			
+			break;
+		case 5: // Hội viên
+			hoiVienButton.setVisible(false);
+			hoiVienButton.setManaged(false);
+			
+			phongTapButton.setVisible(false);
+			phongTapButton.setManaged(false);
+			
+			thietBiButton.setVisible(false);
+			thietBiButton.setManaged(false);
+			
+			nhanVienButton.setVisible(false);
+			nhanVienButton.setManaged(false);
+			
+			goiTapButton.setVisible(false);
+			goiTapButton.setManaged(false);
+
+			thongKeButton.setVisible(false);
+			thongKeButton.setManaged(false);
+			break;
+			
+
+		}
+		VBoxButton.setSpacing(0);
+		
+		
+		
 		usernameLabel.setText(toUpperFirstLetter(userName));
-		DangKiTaiKhoanButton.setVisible(userRole.equals("1"));
 //		hoiVienLabel.setText("" + HoiVienServices.getTotalNhanKhau());
 //		phongTapLabel.setText("" + PhongTapServices.getTotalSoHoKhau());
 //		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanKhau());
