@@ -4,6 +4,7 @@ import static utils.Configs.ROWS_PER_PAGE;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import entity.db.GymDB;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -26,13 +28,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import services.LichSuDiTapServices;
-import services.PhanHoiServices;
 import services.TaiKhoanServices;
 
 public class LichSuDiTapScreenHandler implements Initializable{
 	
 	private String role = GymDB.getUserPreferences().get("role", "");
 	private String username = GymDB.getUserPreferences().get("username", "");
+	private String fromDate = null;
+	private String toDate = null ;
+	
+    @FXML
+    private DatePicker fromDatePicker;
+    
+    @FXML
+    private DatePicker toDatePicker;
 
     @FXML
     private AnchorPane basePane;
@@ -74,7 +83,8 @@ public class LichSuDiTapScreenHandler implements Initializable{
     }
 
     @FXML
-    void search(MouseEvent event) {
+    void filter(MouseEvent event) {
+    	
 
     }
 
@@ -83,10 +93,10 @@ public class LichSuDiTapScreenHandler implements Initializable{
 		try {
 			int id_role = Integer.parseInt(role);
 			if (id_role != 5) {
-				lichSuList = LichSuDiTapServices.getAllLichSu();
+				lichSuList = LichSuDiTapServices.getAllLichSu(null, null);
 			}else {
 				int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
-				lichSuList = LichSuDiTapServices.getAllLichSuUser(id_nguoi_dung);
+				lichSuList = LichSuDiTapServices.getAllLichSuUser(id_nguoi_dung, null, null);
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -99,20 +109,59 @@ public class LichSuDiTapScreenHandler implements Initializable{
 			pagination.setPageCount(lichSuList.size() / ROWS_PER_PAGE);
 		pagination.setMaxPageIndicatorCount(5);
 		pagination.setPageFactory(this::createTableView);
-
-//		tableView.setRowFactory(tv -> {
-//			TableRow<HoiVien> row = new TableRow<>();
-//			row.setOnMouseClicked(event -> {
-//				if (event.getClickCount() == 2 && (!row.isEmpty())) {
-//					try {
-//						detail(event);
-//					} catch (IOException e) {
-//						throw new RuntimeException(e);
-//					}
-//				}
-//			});
-//			return row;
-//		});
+		
+		
+		toDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+    		this.toDate = newValue.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			if (Integer.parseInt(this.role) != 5) {
+				try {
+					lichSuList = LichSuDiTapServices.getAllLichSu(this.fromDate, this.toDate);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				try {
+					lichSuList = LichSuDiTapServices.getAllLichSuUser(TaiKhoanServices.getIDViaUsername(this.username), this.fromDate, this.toDate);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			int soDu1 = lichSuList.size() % ROWS_PER_PAGE;
+			if (soDu1 != 0)
+				pagination.setPageCount(lichSuList.size() / ROWS_PER_PAGE + 1);
+			else
+				pagination.setPageCount(lichSuList.size() / ROWS_PER_PAGE);
+			pagination.setMaxPageIndicatorCount(5);
+			pagination.setPageFactory(this::createTableView);
+    	});
+		
+		fromDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+    		this.fromDate = newValue.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			if (Integer.parseInt(this.role) != 5) {
+				try {
+					lichSuList = LichSuDiTapServices.getAllLichSu(this.fromDate, this.toDate);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				try {
+					lichSuList = LichSuDiTapServices.getAllLichSuUser(TaiKhoanServices.getIDViaUsername(this.username), this.fromDate, this.toDate);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			int soDu2 = lichSuList.size() % ROWS_PER_PAGE;
+			if (soDu2 != 0)
+				pagination.setPageCount(lichSuList.size() / ROWS_PER_PAGE + 1);
+			else
+				pagination.setPageCount(lichSuList.size() / ROWS_PER_PAGE);
+			pagination.setMaxPageIndicatorCount(5);
+			pagination.setPageFactory(this::createTableView);
+    	});
 		
 	}
 	

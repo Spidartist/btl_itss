@@ -13,14 +13,20 @@ import javafx.collections.ObservableList;
 
 public class LichSuDiTapServices {
 	
-	public static ObservableList<LichSuDiTap> getAllLichSu() throws SQLException {
+	public static ObservableList<LichSuDiTap> getAllLichSu(String tuNgay, String denNgay) throws SQLException {
 		
 		ObservableList<LichSuDiTap> lichSuList = FXCollections.observableArrayList();
         String SELECT_QUERY = "SELECT lich_su.id, hoi_vien.ho_ten, goi_tap.ten_goi_tap, goi_tap.loai_goi_tap, phong_tap.ten_phong, `ngay_su_dung` FROM `lich_su` \r\n"
         		+ "JOIN hoi_vien ON hoi_vien.id = lich_su.id_hoi_vien\r\n"
         		+ "JOIN goi_tap ON goi_tap.id = lich_su.id_goi_tap\r\n"
-        		+ "JOIN phong_tap ON phong_tap.id = lich_su.id_phong_tap";
+        		+ "JOIN phong_tap ON phong_tap.id = lich_su.id_phong_tap\r\n"
+        		+ "WHERE (ngay_su_dung >= ? OR ? IS NULL)\r\n"
+        		+ "AND (ngay_su_dung <= ? OR ? IS NULL)";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setString(1, tuNgay);
+        preparedStatement.setString(2, tuNgay);
+        preparedStatement.setString(3, denNgay);
+        preparedStatement.setString(4, denNgay);
         ResultSet result = preparedStatement.executeQuery();
         
         while (result.next()) {
@@ -31,16 +37,22 @@ public class LichSuDiTapServices {
         return lichSuList;
     }
 	
-public static ObservableList<LichSuDiTap> getAllLichSuUser(int idHoiVien) throws SQLException {
+public static ObservableList<LichSuDiTap> getAllLichSuUser(int idHoiVien, String tuNgay, String denNgay) throws SQLException {
 		
 		ObservableList<LichSuDiTap> lichSuList = FXCollections.observableArrayList();
         String SELECT_QUERY = "SELECT lich_su.id, hoi_vien.ho_ten, goi_tap.ten_goi_tap, goi_tap.loai_goi_tap, phong_tap.ten_phong, `ngay_su_dung` FROM `lich_su` \r\n"
         		+ "JOIN hoi_vien ON hoi_vien.id = lich_su.id_hoi_vien\r\n"
         		+ "JOIN goi_tap ON goi_tap.id = lich_su.id_goi_tap\r\n"
         		+ "JOIN phong_tap ON phong_tap.id = lich_su.id_phong_tap\r\n"
-        		+ "WHERE hoi_vien.id = ?";
+        		+ "WHERE hoi_vien.id = 1 \r\n"
+        		+ "AND (ngay_su_dung >= ? OR ? IS NULL)\r\n"
+        		+ "AND (ngay_su_dung <= ? OR ? IS NULL)";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
         preparedStatement.setInt(1, idHoiVien);
+        preparedStatement.setString(2, tuNgay);
+        preparedStatement.setString(3, tuNgay);
+        preparedStatement.setString(4, denNgay);
+        preparedStatement.setString(5, denNgay);
         ResultSet result = preparedStatement.executeQuery();
         
         while (result.next()) {
