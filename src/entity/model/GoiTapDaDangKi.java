@@ -4,12 +4,23 @@ public class GoiTapDaDangKi {
 	private int id;
 
 	private String hoTen, ngayDangKi, tenGoiTap, loaiGoiTap;
+	private int idHoiVien, idGoiTap;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public int getIdHoiVien() {
+		return idHoiVien;
+	}
+	
+	public int getIdGoiTap() {
+		return idGoiTap;
+	}
+	
+	
 	public String getHoTen() {
 		return hoTen;
 	}
@@ -35,9 +46,11 @@ public class GoiTapDaDangKi {
 	public void setNgayDangKi(String ngaySinh) {
 		this.ngayDangKi = ngaySinh;
 	}
-	public GoiTapDaDangKi(int id, String hoTen, String tenGoiTap, String loaiGoiTap, String ngayDangKi) {
+	public GoiTapDaDangKi(int id, int idHoiVien, int idGoiTap, String hoTen, String tenGoiTap, String loaiGoiTap, String ngayDangKi) {
 		super();
 		this.id = id;
+		this.idHoiVien = idHoiVien;
+		this.idGoiTap = idGoiTap;
 		this.hoTen = hoTen;
 		this.tenGoiTap = tenGoiTap;
 		this.loaiGoiTap = loaiGoiTap;
