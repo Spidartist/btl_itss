@@ -65,8 +65,8 @@ public class ThuPhiDetailScreenHandler implements Initializable {
     public void setThuPhi(ThuPhi thuPhi) {
         String soTien = String.valueOf(thuPhi.getSoTien());
         soTienTextField.setText(soTien);
-        loaiThuPhiChoiceBox.setValue(thuPhi.getTenGoiTap());
-        tenGoiTapComboBox.setValue(thuPhi.getLoaiGoiTap());
+        loaiThuPhiChoiceBox.setValue(thuPhi.getLoaiGoiTap());
+        tenGoiTapComboBox.setValue(thuPhi.getTenGoiTap());
         tenHoiVienComboBox.setValue(thuPhi.getTenHoiVien());
         ngayThuPhiDatePicker.setValue(LOCAL_DATE(thuPhi.getNgayThuPhi()));
     }
@@ -171,7 +171,7 @@ public class ThuPhiDetailScreenHandler implements Initializable {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
                                 "Thành công",
-                                "", "Thêm thu phí thành công!"
+                                "", "Cập nhật thu phí thành công!"
                         );
                     } else {
                         createDialog(
