@@ -43,6 +43,7 @@ import services.PhanHoiServices;
 import services.TaiKhoanServices;
 import utils.ViewUtils;
 
+@SuppressWarnings("unused")
 public class PhanHoiScreenHandler implements Initializable{
 	
 	private String role = GymDB.getUserPreferences().get("role", "");
@@ -156,7 +157,8 @@ public class PhanHoiScreenHandler implements Initializable{
 	}
     
     
-    public Node createTableView(int pageIndex) {
+    @SuppressWarnings("unchecked")
+	public Node createTableView(int pageIndex) {
 
 		indexColumn.setCellValueFactory(
 				(Callback<TableColumn.CellDataFeatures<PhanHoi, PhanHoi>, ObservableValue<PhanHoi>>) p -> new ReadOnlyObjectWrapper(
