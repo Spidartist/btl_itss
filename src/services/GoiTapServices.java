@@ -26,7 +26,23 @@ public class GoiTapServices {
 
         return goiTapList;
     }
-
+	
+	
+    public static int getTotalGoiTap() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM goi_tap";
+        try {
+            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+	
 
 	public static ObservableList<String> getLoaiGoiTapAll() throws SQLException {
 		

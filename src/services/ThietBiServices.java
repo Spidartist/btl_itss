@@ -28,6 +28,21 @@ public class ThietBiServices {
 	    }
 	}
 	
+    public static int getTotalThietBi() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM thiet_bi";
+        try {
+            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+	
 	public static ObservableList<ThietBi> getAllThietBi() throws SQLException {
 
 		ObservableList<ThietBi> thietBiList = FXCollections.observableArrayList();

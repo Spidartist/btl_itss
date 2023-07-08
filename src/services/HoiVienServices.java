@@ -31,6 +31,21 @@ public class HoiVienServices {
         return hoiVienList;
     }
 	
+    public static int getTotalHoiVien() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM hoi_vien";
+        try {
+            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+	
 	public static int addHoiVien(String hoVaTen, String ngaySinh, String gioiTinh, String loaiThanhVien, String ngheNghiep) throws SQLException {
 		
         String INSERT_QUERY = "INSERT INTO `hoi_vien`(`ho_ten`, `sinh_nhat`, `nghe_nghiep`, `gioi_tinh`, `loai_thanh_vien`) VALUES (?, ?, ?, ?, ?)";

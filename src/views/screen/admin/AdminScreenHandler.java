@@ -1,37 +1,39 @@
 package views.screen.admin;
 
+import static utils.Configs.ADMIN_SCREEN_PATH;
+import static utils.Configs.DANG_KI_USER_SCREEN_PATH;
+import static utils.Configs.GOI_TAP_DA_DANG_KI_SCREEN_PATH;
+import static utils.Configs.GOI_TAP_SCREEN_PATH;
+import static utils.Configs.HOI_VIEN_SCREEN_PATH;
+import static utils.Configs.LICH_SU_DI_TAP_SCREEN_PATH;
+import static utils.Configs.LOGIN_PATH;
+import static utils.Configs.NHAN_VIEN_SCREEN_PATH;
+import static utils.Configs.PHAN_HOI_SCREEN_PATH;
+import static utils.Configs.PHONG_TAP_SCREEN_PATH;
+import static utils.Configs.THIET_BI_SCREEN_PATH;
+import static utils.Configs.THONG_KE_SCREEN_PATH;
+import static utils.Configs.THU_PHI_SCREEN_PATH;
+import static utils.Utils.toUpperFirstLetter;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import entity.db.GymDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import services.GoiTapServices;
 import services.HoiVienServices;
 import services.NhanVienServices;
 import services.PhongTapServices;
 import services.ThietBiServices;
-import services.ThuPhiServices;
 import utils.ViewUtils;
-import views.screen.login.LoginScreenHandler;
-
-import static utils.Utils.toUpperFirstLetter;
-import static utils.Configs.*;
 
 public class AdminScreenHandler implements Initializable{
 
@@ -170,7 +172,6 @@ public class AdminScreenHandler implements Initializable{
 //	public static String userRole = userPreferences.get("role", "");
 //	public static String userName = userPreferences.get("username", "");
 	private final ViewUtils viewUtils = new ViewUtils();
-	private Connection conn = GymDB.getConnection();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -272,12 +273,12 @@ public class AdminScreenHandler implements Initializable{
 		
 		
 		usernameLabel.setText(toUpperFirstLetter(userName));
-//		hoiVienLabel.setText("" + HoiVienServices.getTotalNhanKhau());
-//		phongTapLabel.setText("" + PhongTapServices.getTotalSoHoKhau());
-//		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanKhau());
-//		goiTapLabel.setText(""+GoiTapServices.SoLuongNhanKhauTamVang());
-//		thietBiLabel.setText(""+ThietBiServices.SoLuongNhanKhauTamTru());
-		ResultSet result = null;
+		hoiVienLabel.setText("" + HoiVienServices.getTotalHoiVien());
+		phongTapLabel.setText("" + PhongTapServices.getTotalPhongTap());
+		nhanVienLabel.setText("" + NhanVienServices.getTotalNhanVien());
+		goiTapLabel.setText(""+GoiTapServices.getTotalGoiTap());
+		thietBiLabel.setText(""+ThietBiServices.getTotalThietBi());
+//		ResultSet result = null;
 
 //		List<LoaiCoSoVatChat> listCoSoVatChat = CoSoVatChatServices.getStatisticCSVC();
 //
