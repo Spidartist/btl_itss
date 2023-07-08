@@ -39,9 +39,9 @@ public class Configs {
 	public static final String DANG_KI_USER_SCREEN_PATH = "/views/fxml/dangki-view.fxml";
 	
 	
-    public static final String DATABASE = "jdbc:mysql://localhost:3307/itss";
+    public static final String DATABASE = "jdbc:mysql://localhost:3306/itss";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "daominh";
+    public static final String PASSWORD = "";
     
     
     public static final int ROWS_PER_PAGE = 10;
