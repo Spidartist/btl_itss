@@ -46,6 +46,19 @@ public class PhanHoiServices {
         preparedStatement.setInt(1, ID);
         return preparedStatement.executeUpdate();
 	}
+	
+	public static int updatePhanHoi(int ID, String phanHoi, String hoiDap) throws SQLException {
+		String QUERY = "UPDATE `phan_hoi` SET `noi_dung`=?,`hoi_dap`=? WHERE id = ?";
+		
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(QUERY);
+		preparedStatement.setString(1, phanHoi);
+		preparedStatement.setString(2, hoiDap);
+        preparedStatement.setInt(3, ID);
+        return preparedStatement.executeUpdate();
+		
+	}
+	
+	
 
 	public PhanHoiServices() {
 		// TODO Auto-generated constructor stub

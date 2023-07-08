@@ -198,6 +198,21 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
+                        <Button id="menuButton" fx:id="dangXuatButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="42.0" prefWidth="223.0" text="Đăng xuất" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/add-friend.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                      <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

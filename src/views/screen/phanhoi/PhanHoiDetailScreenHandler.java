@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
+import entity.db.GymDB;
 import entity.model.PhanHoi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,15 +16,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.GeneralServices;
-import services.HoiVienServices;
 import services.PhanHoiServices;
 import services.TaiKhoanServices;
 import utils.ViewUtils;
 
 public class PhanHoiDetailScreenHandler {
 	
-	private static final Preferences userPreferences = Preferences.userRoot();
-	public static final String userName = userPreferences.get("username", "");
+	private Preferences userPreferences = GymDB.getUserPreferences();
+	public String userName = userPreferences.get("username", "");
+	public String role = userPreferences.get("role", "");
 	
 	private int ID;
 	
@@ -49,6 +50,15 @@ public class PhanHoiDetailScreenHandler {
     	phanHoiText.setText(phanHoi.getNoiDung());
     	hoiDapText.setText(phanHoi.getHoiDap());
     	hoVaTenText.setEditable(false);
+    	int id_role = Integer.parseInt(role);
+    	System.out.println(id_role);
+    	if (id_role == 5) {
+    		phanHoiText.setEditable(true);
+    		hoiDapText.setEditable(false);
+    	}else {
+    		phanHoiText.setEditable(false);
+    		hoiDapText.setEditable(true);
+    	}
     }
 
     @FXML
@@ -122,8 +132,31 @@ public class PhanHoiDetailScreenHandler {
     }
 
     @FXML
-    void update(ActionEvent event) {
-
+    void update(ActionEvent event) throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+        String phanHoi = phanHoiText.getText();
+        String hoiDap = hoiDapText.getText();
+        try {
+            int result = PhanHoiServices.updatePhanHoi(ID, phanHoi, hoiDap);
+            if (result == 1) {
+                createDialog(
+                        Alert.AlertType.CONFIRMATION,
+                        "Thành công",
+                        "", "Cập nhật nội dung phản hồi thành công!"
+                );
+            } else {
+                createDialog(
+                        Alert.AlertType.ERROR,
+                        "Thất bại",
+                        "", "Có lỗi xảy ra, vui lòng thử lại!"
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        viewUtils.switchToPhanHoi(event);
+            
+        
     }
 
 }

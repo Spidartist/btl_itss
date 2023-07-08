@@ -27,6 +27,8 @@ import services.PhongTapServices;
 import services.ThietBiServices;
 import services.ThuPhiServices;
 import utils.ViewUtils;
+import views.screen.login.LoginScreenHandler;
+
 import static utils.Utils.toUpperFirstLetter;
 import static utils.Configs.*;
 
@@ -34,6 +36,9 @@ public class AdminScreenHandler implements Initializable{
 
 	@FXML
     private Button DangKiTaiKhoanButton;
+	
+    @FXML
+    private Button dangXuatButton;
 
     @FXML
     private AnchorPane basePane;
@@ -142,16 +147,23 @@ public class AdminScreenHandler implements Initializable{
     public void switchToTrangChu(ActionEvent event) throws IOException {
     	viewUtils.changeScene(event, ADMIN_SCREEN_PATH);
     }
+    
+
+    @FXML
+    void switchToLogin(ActionEvent event) throws IOException {
+    	viewUtils.changeScene(event, LOGIN_PATH);
+    }
 
 	// Save user role
-	private static final Preferences userPreferences = Preferences.userRoot();
-	public static final String userRole = userPreferences.get("role", "");
-	public static final String userName = userPreferences.get("username", "");
+//	private static Preferences userPreferences = Preferences.userRoot();
+//	public static String userRole = userPreferences.get("role", "");
+//	public static String userName = userPreferences.get("username", "");
 	private final ViewUtils viewUtils = new ViewUtils();
 	private Connection conn = GymDB.getConnection();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		String userName = GymDB.getUserPreferences().get("username", "");
 		usernameLabel.setText(toUpperFirstLetter(userName));
 //		hoiVienLabel.setText("" + HoiVienServices.getTotalNhanKhau());
 //		phongTapLabel.setText("" + PhongTapServices.getTotalSoHoKhau());

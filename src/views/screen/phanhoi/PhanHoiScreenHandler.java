@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
+import entity.db.GymDB;
 import entity.model.PhanHoi;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -23,6 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
@@ -40,9 +43,18 @@ import services.PhanHoiServices;
 import utils.ViewUtils;
 
 public class PhanHoiScreenHandler implements Initializable{
+	
+	private String role = GymDB.getUserPreferences().get("role", "");
 
     @FXML
     private AnchorPane basePane;
+    
+
+    @FXML
+    private Button deleteBtn;
+    
+    @FXML
+    private Button addBtn;
 
     @FXML
     private TableColumn<PhanHoi, String> hoVaTenColumn;
@@ -198,6 +210,11 @@ public class PhanHoiScreenHandler implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		int id_role = Integer.parseInt(role);
+		if (id_role != 5) {
+			addBtn.setVisible(false);
+			deleteBtn.setVisible(false);
+		}
 		try {
 			phanHoiList = PhanHoiServices.getAllPhanHoi();
 		} catch (SQLException e1) {
