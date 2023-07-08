@@ -17,17 +17,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
    <children>
       <HBox layoutX="-1.0">
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="190.0" stylesheets="@../styles/navigation-styles.css">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
+                  <VBox fx:id="VBoxButton" alignment="TOP_CENTER" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="601.0" prefWidth="248.0" styleClass="sidebar" stylesheets="@../../../assets/styles/global.css">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="76.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/logo2_nobg.png" />
+                              <Image url="@../assets/img/logo.png" />
                            </image>
                            <VBox.margin>
                               <Insets bottom="16.0" left="8.0" right="8.0" top="8.0" />
@@ -43,7 +43,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/house.png" />
+                                    <Image url="@../assets/img/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -58,7 +58,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/group.png" />
+                                    <Image url="@../assets/img/member.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -73,7 +73,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/book-stack.png" />
+                                    <Image url="@../assets/img/room.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -88,7 +88,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/infrastructure.png" />
+                                    <Image url="@../assets/img/facility.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -103,7 +103,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/schedule.png" />
+                                    <Image url="@../assets/img/staff.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -115,7 +115,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/add-friend.png" />
+                                    <Image url="@../assets/img/goitap.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -130,7 +130,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/add-friend.png" />
+                                    <Image url="@../assets/img/fee.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -138,14 +138,14 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button id="menuButton" fx:id="PhanHoiButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToPhanHoi" prefHeight="42.0" prefWidth="223.0" text="Phản hồi" textFill="WHITE">
+                        <Button id="menuButton" fx:id="phanHoiButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToPhanHoi" prefHeight="42.0" prefWidth="223.0" text="Phản hồi" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/add-friend.png" />
+                                    <Image url="@../assets/img/feedback.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -160,28 +160,13 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/analysis.png" />
+                                    <Image url="@../assets/img/statistic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </Button>
-                        <Button id="menuButton" fx:id="DangKiTaiKhoanButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToDangKiTaiKhoan" prefHeight="42.0" prefWidth="223.0" text="Đăng ký người dùng" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/add-friend.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                         <Button id="menuButton" fx:id="goiTapDaDangKiButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToGoiTapDaDangKi" prefHeight="42.0" prefWidth="223.0" text="Gói tập đã đăng kí" textFill="WHITE">
                            <font>
@@ -190,7 +175,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/add-friend.png" />
+                                    <Image url="@../assets/img/bought.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -205,7 +190,37 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/add-friend.png" />
+                                    <Image url="@../assets/img/history.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button id="menuButton" fx:id="thayDoiMatKhauButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToThayDoiMatKhau" prefHeight="42.0" prefWidth="223.0" text="Thay đổi mật khẩu" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/password.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button id="menuButton" fx:id="dangXuatButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="42.0" prefWidth="223.0" text="Đăng xuất" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/logout.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -222,7 +237,7 @@
             </AnchorPane>
             <VBox>
                <children>
-                  <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f5f5f5;">
+                  <AnchorPane fx:id="basePane" prefHeight="718.0" prefWidth="800.0" style="-fx-background-color: #EBE1B9;">
                      <children>
                         <BarChart fx:id="facilityChart" barGap="2.0" categoryGap="8.0" layoutX="21.0" layoutY="203.0" prefHeight="332.0" prefWidth="471.0" stylesheets="@../styles/bar-chart.css" title="Thống kê">
                            <xAxis>
@@ -244,7 +259,7 @@
                                     </Label>
                                     <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/group.png" />
+                                          <Image url="@../assets/img/member.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="hoiVienLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
@@ -264,7 +279,7 @@
                                     </Label>
                                     <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/home2.png" />
+                                          <Image url="@../assets/img/room.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="phongTapLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
@@ -284,7 +299,7 @@
                                     </Label>
                                     <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/absent.png" />
+                                          <Image url="@../assets/img/staff.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="nhanVienLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
@@ -304,7 +319,7 @@
                                     </Label>
                                     <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/stay-at-home.png" />
+                                          <Image url="@../assets/img/goitap.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="goiTapLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
@@ -324,7 +339,7 @@
                                     </Label>
                                     <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/tombstone.png" />
+                                          <Image url="@../assets/img/facility.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="thietBiLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
