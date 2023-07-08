@@ -146,4 +146,18 @@ public class ViewUtils {
         stage.show();
     }
 
+	public void switchToGoiTapDaDangKi(ActionEvent event) throws IOException {
+	    Stage stage;
+        Scene scene;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
+        root = loader.load();
+        AdminScreenHandler controller = loader.getController();
+        controller.switchToGoiTapDaDangKi();
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+	}
+
 }

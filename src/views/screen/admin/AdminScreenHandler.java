@@ -114,7 +114,7 @@ public class AdminScreenHandler implements Initializable{
     }
     
     @FXML
-    void switchToGoiTapDaDangKi() throws IOException {
+    public void switchToGoiTapDaDangKi() throws IOException {
     	viewUtils.changeAnchorPane(basePane, GOI_TAP_DA_DANG_KI_SCREEN_PATH);
     }
     
