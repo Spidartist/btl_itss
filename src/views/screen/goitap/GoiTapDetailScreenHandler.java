@@ -5,8 +5,6 @@ import static utils.Utils.createDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import entity.model.GoiTap;
@@ -20,9 +18,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.GoiTapServices;
-import services.HoiVienServices;
-import services.PhongTapServices;
-import services.RoleServices;
 import utils.ViewUtils;
 
 public class GoiTapDetailScreenHandler implements Initializable{
@@ -159,7 +154,7 @@ public class GoiTapDetailScreenHandler implements Initializable{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                viewUtils.switchToHoiVien(event);
+                viewUtils.switchToGoiTap(event);
             
         }
         

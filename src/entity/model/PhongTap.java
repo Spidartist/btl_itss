@@ -2,7 +2,15 @@ package entity.model;
 
 public class PhongTap {
 	private int id;
-	private String tenPhong;
+	private String tenPhong, diaChi;
+	
+	
+	public String getDiaChi() {
+		return diaChi;
+	}
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
 	public PhongTap() {
 		// TODO Auto-generated constructor stub
 	}
@@ -18,10 +26,13 @@ public class PhongTap {
 	public void setTenPhong(String tenPhong) {
 		this.tenPhong = tenPhong;
 	}
-	public PhongTap(int id, String tenPhong) {
+	public PhongTap(int id, String tenPhong, String diaChi) {
 		super();
 		this.id = id;
 		this.tenPhong = tenPhong;
+		this.diaChi = diaChi;
 	}
+	
+	
 
 }

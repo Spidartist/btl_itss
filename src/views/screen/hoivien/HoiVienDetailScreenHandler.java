@@ -40,7 +40,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
     private TextField hoVaTenTextField;
 
     @FXML
-    private TextField loaiThanhVienTextField;
+    private ChoiceBox<String> loaiThanhVienChoiceBox;
 
     @FXML
     private DatePicker ngaySinhDatePicker;
@@ -60,7 +60,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
         ngaySinhDatePicker.setValue(LOCAL_DATE(hoiVien.getNgaySinh()));
         gioiTinhChoiceBox.setValue(hoiVien.getGioiTinh());
         ngheNghiepTextField.setText(hoiVien.getNgheNghiep());
-        loaiThanhVienTextField.setText(hoiVien.getLoaiThanhVien());
+        loaiThanhVienChoiceBox.setValue(hoiVien.getLoaiThanhVien());
     }
     
     public void setTitle(String title) {
@@ -91,7 +91,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
             String hoVaTen = hoVaTenTextField.getText();
             String ngaySinh = ngaySinhDatePicker.getValue().toString();
             String gioiTinh = gioiTinhChoiceBox.getValue();
-            String loaiThanhVien = loaiThanhVienTextField.getText();
+            String loaiThanhVien = loaiThanhVienChoiceBox.getValue();
             String ngheNghiep = ngheNghiepTextField.getText();
             if (hoVaTen.trim().equals("") || ngaySinh.trim().equals("") || ngheNghiep.trim().equals("") ||
                     ngheNghiep.trim().equals("")) {
@@ -137,6 +137,13 @@ public class HoiVienDetailScreenHandler implements Initializable{
         gioiTinhChoiceBox.getItems().add("Nam");
         gioiTinhChoiceBox.getItems().add("Nữ");
         gioiTinhChoiceBox.setValue("Nam");
+        loaiThanhVienChoiceBox.getItems().add("VIP0");
+        loaiThanhVienChoiceBox.getItems().add("VIP1");
+        loaiThanhVienChoiceBox.getItems().add("VIP2");
+        loaiThanhVienChoiceBox.getItems().add("VIP3");
+        loaiThanhVienChoiceBox.getItems().add("VIP4");
+        loaiThanhVienChoiceBox.getItems().add("VIP5");
+        loaiThanhVienChoiceBox.setValue("VIP0");
     }
 
     @FXML
@@ -156,7 +163,7 @@ public class HoiVienDetailScreenHandler implements Initializable{
             String hoVaTen = hoVaTenTextField.getText();
             String ngaySinh = ngaySinhDatePicker.getValue().toString();
             String gioiTinh = gioiTinhChoiceBox.getValue();
-            String loaiThanhVien = loaiThanhVienTextField.getText();
+            String loaiThanhVien = loaiThanhVienChoiceBox.getValue();
             String ngheNghiep = ngheNghiepTextField.getText();
             if (hoVaTen.trim().equals("") || ngaySinh.trim().equals("") || ngheNghiep.trim().equals("") ||
                     ngheNghiep.trim().equals("")) {

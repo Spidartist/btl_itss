@@ -7,7 +7,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `phong_tap` (   
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `ten_phong` varchar(30)
+  `ten_phong` varchar(30),
+  `dia_chi` varchar(60)
 );
 
 CREATE TABLE `thiet_bi` (  
@@ -59,6 +60,7 @@ CREATE TABLE `thu_phi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
+  `so_tien_da_thu` int,
   `ngay_thu_phi` date
 );
 
@@ -114,13 +116,13 @@ INSERT INTO role (id, ten_role) VALUES
 (4, "Nhân viên"),
 (5, "Hội viên");
 
-INSERT INTO phong_tap (id, ten_phong) VALUES 
-(1, "Cơ sở Trần Duy Hưng"),
-(2, "Cơ sở Tạ Quang Bửu"),
-(3, "Cơ sở Quất Lâm"),
-(4, "Cơ sở Trần Đại Nghĩa"),
-(5, "Cơ sở Nguyễn Trãi 1"),
-(6, "Cơ sở Nguyễn Trãi 2");
+INSERT INTO phong_tap (id, ten_phong, dia_chi) VALUES 
+(1, "Cơ sở Trần Duy Hưng", "số 11 Trần Duy Hưng, Cầu Giấy, Hà Nội"),
+(2, "Cơ sở Tạ Quang Bửu", "số 21 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội"),
+(3, "Cơ sở Quất Lâm", "số 62 Quất Lâm, Giao Thủy, Nam Định"),
+(4, "Cơ sở Trần Đại Nghĩa", "số 1 Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội"),
+(5, "Cơ sở Nguyễn Trãi 1", "số 781 Nguyễn Trãi, Thanh Xuân, Hà Nội"),
+(6, "Cơ sở Nguyễn Trãi 2", "số 1 Nguyễn Trãi, Thanh Xuân, Hà Nội");
 
 INSERT INTO nhan_vien (id_phong_tap, ho_va_ten) VALUES
 (1, "Hoàng Danh Quân"),
@@ -171,8 +173,8 @@ INSERT INTO `hoi_vien`(`ho_ten`, `sinh_nhat`, `loai_thanh_vien`, `gioi_tinh`, `n
 INSERT INTO `goi_tap`(`id`, `ten_goi_tap`, `so_tien`, `loai_goi_tap`) VALUES 
 (1, "Gói Gym cơ bản", "60000", "Theo ngày"),
 (2, "Gói Gym cơ bản", "1500000", "Theo tháng"),
-(3, "Gói Gym cơ bản", "9000000", "Theo năm"),
-(4, "Gói Gym nâng cao", "900000", "Theo ngày"),
+(3, "Gói Gym cơ bản", "7000000", "Theo năm"),
+(4, "Gói Gym nâng cao", "90000", "Theo ngày"),
 (5, "Gói Gym nâng cao", "2000000", "Theo tháng"),
 (6, "Gói Gym nâng cao", "9000000", "Theo năm"),
 (7, "Gói Gym siêu cấp", "120000", "Theo ngày"),
@@ -285,23 +287,23 @@ INSERT INTO `dang_ki_goi_tap`(`id_hoi_vien`, `id_goi_tap`, `ngay_dang_ki`) VALUE
 (25, 7, "2022-11-27"),
 (26, 8, "2022-11-30");
 
-INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES
-(1, 1, "2022-11-02"),
-(2, 2, "2022-11-03"),
-(3, 3, "2022-11-03"),
-(4, 4, "2022-11-04"),
-(5, 5, "2022-11-05"),
-(6, 6, "2022-11-05"),
-(7, 7, "2022-11-09"),
-(8, 8, "2022-11-09"),
-(9, 9, "2022-11-09"),
-(10, 1, "2022-11-12"),
-(11, 2, "2022-11-13"),
-(12, 3, "2022-11-14"),
-(13, 4, "2022-11-15"),
-(14, 5, "2022-11-14"),
-(15, 6, "2022-11-19"),
-(16, 7, "2022-11-19");
+INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`, `so_tien_da_thu`) VALUES
+(1, 1, "2022-11-02", 60000),
+(2, 2, "2022-11-03", 1500000),
+(3, 3, "2022-11-03", 7000000),
+(4, 4, "2022-11-04", 90000),
+(5, 5, "2022-11-05", 2000000),
+(6, 6, "2022-11-05", 9000000),
+(7, 7, "2022-11-09", 120000),
+(8, 8, "2022-11-09", 2100000),
+(9, 9, "2022-11-09", 12000000),
+(10, 1, "2022-11-12", 60000),
+(11, 2, "2022-11-13", 1500000),
+(12, 3, "2022-11-14", 7000000),
+(13, 4, "2022-11-15", 90000),
+(14, 5, "2022-11-14", 2000000),
+(15, 6, "2022-11-19", 9000000),
+(16, 7, "2022-11-19", 120000);
 
 INSERT INTO `lich_su`(`id_hoi_vien`, `id_goi_tap`, `id_phong_tap`, `ngay_su_dung`) VALUES
 (1, 1, 1, "2023-07-07"),

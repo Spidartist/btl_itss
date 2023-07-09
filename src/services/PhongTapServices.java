@@ -22,7 +22,7 @@ public class PhongTapServices {
         ResultSet result = preparedStatement.executeQuery();
         
         while (result.next()) {
-        	phongTapList.add(new PhongTap(result.getInt("id"), result.getString("ten_phong")));
+        	phongTapList.add(new PhongTap(result.getInt("id"), result.getString("ten_phong"), result.getString("dia_chi")));
 		}
         
         return phongTapList;
@@ -59,11 +59,12 @@ public class PhongTapServices {
     }
 	
 	
-	public static int addPhongTap(String tenPhongTap) throws SQLException {
+	public static int addPhongTap(String tenPhongTap, String diaChi) throws SQLException {
 		
-        String INSERT_QUERY = "INSERT INTO `phong_tap`(`ten_phong`) VALUES (?)";
+        String INSERT_QUERY = "INSERT INTO `phong_tap`(`ten_phong`, `dia_chi`) VALUES (?, ?)";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(INSERT_QUERY);
         preparedStatement.setString(1, tenPhongTap);
+        preparedStatement.setString(2, diaChi);
         return preparedStatement.executeUpdate();
     }
 	
@@ -76,11 +77,12 @@ public class PhongTapServices {
         return preparedStatement.executeUpdate();
     }
     
-    public static int updatePhongTap(int ID, String tenPhongTap) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `phong_tap` SET `ten_phong`=? WHERE id = ?";
+    public static int updatePhongTap(int ID, String tenPhongTap, String diaChi) throws SQLException {
+		String UPDATE_QUERY = "UPDATE `phong_tap` SET `ten_phong`=?, `dia_chi`=? WHERE id = ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
 		preparedStatement.setString(1, tenPhongTap);
-		preparedStatement.setInt(2, ID);
+		preparedStatement.setString(2, diaChi);
+		preparedStatement.setInt(3, ID);
 		preparedStatement.execute();
 		return preparedStatement.executeUpdate();
 	}

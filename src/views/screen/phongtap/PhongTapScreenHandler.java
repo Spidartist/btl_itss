@@ -43,6 +43,9 @@ public class PhongTapScreenHandler implements Initializable{
 
     @FXML
     private AnchorPane basePane;
+    
+    @FXML
+    private TableColumn<PhongTap, String> diaChiColumn;
 
     @FXML
     private TableColumn indexColumn;
@@ -137,7 +140,7 @@ public class PhongTapScreenHandler implements Initializable{
 		});
 		indexColumn.setSortable(false);
 		tenPhongColumn.setCellValueFactory(new PropertyValueFactory<PhongTap, String>("tenPhong"));
-
+		diaChiColumn.setCellValueFactory(new PropertyValueFactory<PhongTap, String>("diaChi"));
 		
 		
 		int lastIndex = 0;
@@ -231,52 +234,7 @@ public class PhongTapScreenHandler implements Initializable{
 			else
 				pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
 			pagination.setMaxPageIndicatorCount(5);
-			pagination.setPageFactory(pageIndex -> {
-				indexColumn.setCellValueFactory(
-						(Callback<TableColumn.CellDataFeatures<PhongTap, PhongTap>, ObservableValue<PhongTap>>) p -> new ReadOnlyObjectWrapper(
-								p.getValue()));
-
-				indexColumn
-						.setCellFactory(new Callback<TableColumn<PhongTap, PhongTap>, TableCell<PhongTap, PhongTap>>() {
-							@Override
-							public TableCell<PhongTap, PhongTap> call(TableColumn<PhongTap, PhongTap> param) {
-								return new TableCell<PhongTap, PhongTap>() {
-									@Override
-									protected void updateItem(PhongTap item, boolean empty) {
-										super.updateItem(item, empty);
-
-										if (this.getTableRow() != null && item != null) {
-											setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
-										} else {
-											setText("");
-										}
-									}
-								};
-							}
-						});
-				indexColumn.setSortable(false);
-				tenPhongColumn.setCellValueFactory(new PropertyValueFactory<PhongTap, String>("tenPhong"));
-				int lastIndex = 0;
-				int displace = filteredData.size() % ROWS_PER_PAGE;
-				if (displace > 0) {
-					lastIndex = filteredData.size() / ROWS_PER_PAGE;
-				} else {
-					lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
-				}
-				// Add nhankhau to table
-				if (filteredData.isEmpty())
-					tableView.setItems(FXCollections.observableArrayList(filteredData));
-				else {
-					if (lastIndex == pageIndex && displace > 0) {
-						tableView.setItems(FXCollections.observableArrayList(
-								filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
-					} else {
-						tableView.setItems(FXCollections.observableArrayList(filteredData
-								.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
-					}
-				}
-				return tableView;
-			});
+			pagination.setPageFactory(this::createTableView);
 		});
     }
 

@@ -24,6 +24,9 @@ public class PhongTapDetailScreenHandler {
 
     @FXML
     private Button add_btn;
+    
+    @FXML
+    private TextField diaChiTextField;
 
     @FXML
     private TextField tenPhongTapTextField;
@@ -36,6 +39,7 @@ public class PhongTapDetailScreenHandler {
     
     public void setPhongTap(PhongTap phongTap) {
         tenPhongTapTextField.setText(phongTap.getTenPhong());
+        diaChiTextField.setText(phongTap.getDiaChi());
     }
     
     public void setTitle(String title) {
@@ -59,6 +63,7 @@ public class PhongTapDetailScreenHandler {
     void addPhongTap(ActionEvent event) throws IOException {
     	ViewUtils viewUtils = new ViewUtils();
     	String tenPhongTap = tenPhongTapTextField.getText();
+    	String diaChi = diaChiTextField.getText();
         if (tenPhongTap.trim().equals("")) {
             createDialog(
                     Alert.AlertType.WARNING,
@@ -67,7 +72,7 @@ public class PhongTapDetailScreenHandler {
             ;
         } else {
                 try {
-                    int result = PhongTapServices.addPhongTap(tenPhongTap);
+                    int result = PhongTapServices.addPhongTap(tenPhongTap, diaChi);
                     if (result == 1) {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
@@ -100,6 +105,7 @@ public class PhongTapDetailScreenHandler {
     void update(ActionEvent event) throws IOException {
     	ViewUtils viewUtils = new ViewUtils();
     	String tenPhongTap = tenPhongTapTextField.getText();
+    	String diaChi = diaChiTextField.getText();
         if (tenPhongTap.trim().equals("")) {
             createDialog(
                     Alert.AlertType.WARNING,
@@ -108,7 +114,7 @@ public class PhongTapDetailScreenHandler {
             ;
         } else {
                 try {
-                    int result = PhongTapServices.updatePhongTap(ID, tenPhongTap);
+                    int result = PhongTapServices.updatePhongTap(ID, tenPhongTap, diaChi);
                     if (result == 1) {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,

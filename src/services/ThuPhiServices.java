@@ -30,7 +30,7 @@ public class ThuPhiServices {
 	}
 	
 	public static int getAllSumPhi() throws SQLException {
-		String SELECT_QUERY = "SELECT SUM(goi_tap.so_tien) AS doanh_thu from thu_phi JOIN goi_tap ON thu_phi.id_goi_tap = goi_tap.id";
+		String SELECT_QUERY = "SELECT SUM(thu_phi.so_tien_da_thu) AS doanh_thu from thu_phi";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
 		ResultSet result = preparedStatement.executeQuery();
 
@@ -39,7 +39,7 @@ public class ThuPhiServices {
 	}
 	
 	public static int getSumPhi(String fromDate, String toDate) throws SQLException {
-		String SELECT_QUERY = "SELECT SUM(goi_tap.so_tien) AS doanh_thu from thu_phi JOIN goi_tap ON thu_phi.id_goi_tap = goi_tap.id\r\n"
+		String SELECT_QUERY = "SELECT SUM(thu_phi.so_tien_da_thu) AS doanh_thu from thu_phi\r\n"
 				+ "WHERE thu_phi.ngay_thu_phi >= ?\r\n"
 				+ "AND thu_phi.ngay_thu_phi <= ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);

@@ -18,11 +18,12 @@
             <Font name="Segoe UI" size="24.0" />
          </font>
       </Text>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="433.0" prefWidth="357.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="385.0" stylesheets="@../styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="126.0" maxPageIndicatorCount="5" prefHeight="454.0" prefWidth="531.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="531.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
-            <TableColumn fx:id="tenPhongColumn" prefWidth="324.5" text="Tên phòng" />
+            <TableColumn fx:id="tenPhongColumn" prefWidth="194.5" text="Tên phòng" />
+            <TableColumn fx:id="diaChiColumn" prefWidth="303.5" text="Địa chỉ" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">
@@ -30,7 +31,7 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <VBox layoutX="511.0" layoutY="128.0" prefHeight="197.0" prefWidth="160.0">
+      <VBox layoutX="599.0" layoutY="128.0" prefHeight="197.0" prefWidth="160.0">
          <children>
             <Button mnemonicParsing="false" onAction="#addPhongTap" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
                <font>
