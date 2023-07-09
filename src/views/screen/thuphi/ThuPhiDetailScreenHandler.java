@@ -1,5 +1,6 @@
 package views.screen.thuphi;
 
+import entity.db.GymDB;
 import entity.model.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,8 @@ import static utils.Utils.LOCAL_DATE;
 import static utils.Utils.createDialog;
 
 public class ThuPhiDetailScreenHandler implements Initializable {
+	
+	private String username = GymDB.getUserPreferences().get("username", "");
 
     private int ID;
     @FXML
@@ -82,8 +85,9 @@ public class ThuPhiDetailScreenHandler implements Initializable {
         ObservableList<HoiVien> hoiVienList;
         ObservableList<GoiTap> goiTapList;
         try {
+        	int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
             hoiVienList = HoiVienServices.getAllHoiVien();
-            goiTapList = GoiTapServices.getAllGoiTap();
+            goiTapList = GoiTapServices.getAllGoiTapUser(id_nguoi_dung);
             for (HoiVien hoiVien : hoiVienList) {
                 tenHoiVienComboBox.getItems().add(hoiVien.getHoTen());
             }

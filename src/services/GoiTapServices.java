@@ -46,6 +46,22 @@ public class GoiTapServices {
     }
 	
 	
+	public static ObservableList<GoiTap> getAllGoiTapUser(int id_nguoi_dung) throws SQLException {
+
+        ObservableList<GoiTap> goiTapList = FXCollections.observableArrayList();
+        String SELECT_QUERY = "SELECT goi_tap.`id`, `ten_goi_tap`, `so_tien`, `loai_goi_tap` FROM `goi_tap` JOIN dang_ki_goi_tap ON goi_tap.id = dang_ki_goi_tap.id WHERE dang_ki_goi_tap.id_hoi_vien = ?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, id_nguoi_dung);
+        ResultSet result = preparedStatement.executeQuery();
+
+        while (result.next()) {
+            goiTapList.add(new GoiTap(result.getInt("id"), result.getInt("so_tien"),
+                    result.getString("ten_goi_tap"), result.getString("loai_goi_tap")));
+        }
+
+        return goiTapList;
+    }
+	
     public static int getTotalGoiTap() {
         int total = 0;
         String GET_QUERY = "SELECT COUNT(*) FROM goi_tap";
