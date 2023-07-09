@@ -88,6 +88,31 @@ public class ThuPhiServices {
 
 		return thuPhiList;
 	}
+	
+	public static ObservableList<ThuPhi> getAllThuPhiUser(int id_nguoi_dung) throws SQLException {
+
+		ObservableList<ThuPhi> thuPhiList = FXCollections.observableArrayList();
+		String SELECT_QUERY = "SELECT tp.id , tp.ngay_thu_phi, hv.ho_ten, gt.ten_goi_tap, gt.so_tien, gt.loai_goi_tap FROM `thu_phi` tp " +
+				"JOIN `hoi_vien` hv ON tp.id_hoi_vien = hv.id " +
+				"JOIN `goi_tap` gt ON tp.id_goi_tap = gt.id WHERE hv.id=?";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+		preparedStatement.setInt(1, id_nguoi_dung);
+		ResultSet result = preparedStatement.executeQuery();
+
+		while (result.next()) {
+			int id = result.getInt("id");
+			String ngayThuPhi = convertDate(result.getString("ngay_thu_phi"));
+			String hoTen = result.getString("ho_ten");
+			String tenGoiTap = result.getString("ten_goi_tap");
+			int soTien = result.getInt("so_tien");
+			String loaiGoiTap = result.getString("loai_goi_tap");
+
+			ThuPhi thuPhi = new ThuPhi(id, hoTen, tenGoiTap, soTien, loaiGoiTap, ngayThuPhi);
+			thuPhiList.add(thuPhi);
+		}
+
+		return thuPhiList;
+	}
 
 	public static int addThuPhi(int idHoiVien, int idGoiTap, String ngayThuPhi) throws SQLException {
 
