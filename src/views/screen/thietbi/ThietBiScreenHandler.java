@@ -158,11 +158,11 @@ public class ThietBiScreenHandler implements Initializable {
                     return true;
                 }
                 String lowerCaseFilter = removeAccent(searchTextField.getText().toLowerCase());
-                if (removeAccent(person.getTen().toLowerCase()).contains(lowerCaseFilter)) {
-                    return true;
-                } else {
-                    return false;
-                }
+				if (removeAccent(person.getTen().toLowerCase()).contains(lowerCaseFilter)) {
+					return true;
+				} else {
+					return false;
+				}
             });
             int soDu = filteredData.size() % ROWS_PER_PAGE;
             if (soDu != 0)

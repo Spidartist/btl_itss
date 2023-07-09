@@ -14,7 +14,7 @@ CREATE TABLE `thiet_bi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_phong_tap` int,
   `ten` varchar(30),
-  `ngay_nhap_ve` varchar(30),
+  `ngay_nhap_ve` date,
   `xuat_xu` varchar(30),
   `tinh_trang` varchar(30)
 );
@@ -59,7 +59,7 @@ CREATE TABLE `thu_phi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_hoi_vien` int,
   `id_goi_tap` int,
-  `ngay_thu_phi` varchar(30)
+  `ngay_thu_phi` date
 );
 
 CREATE TABLE `role` (  
@@ -171,10 +171,10 @@ INSERT INTO `phan_hoi`(`id_hoi_vien`, `noi_dung`, `hoi_dap`) VALUES
 (3, "Phòng tập Quất Lâm quá bẩn", "Nhiều người bảo sạch mà");
 
 INSERT INTO `dang_ki_goi_tap`(`id_hoi_vien`, `id_goi_tap`, `ngay_dang_ki`) VALUES 
-(1, 2, 2022-11-12),
-(2, 6, 2020-11-12),
-(3, 5, 2021-11-12),
-(4, 8, 2023-11-12);
+(1, 2, "2022-11-12"),
+(2, 6, "2020-11-12"),
+(3, 5, "2021-11-12"),
+(4, 8, "2023-11-12");
 
 INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES
 (1, 2, "2023-01-02"),
@@ -183,12 +183,12 @@ INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES
 (4, 8, "2023-11-22");
 
 INSERT INTO `lich_su`(`id_hoi_vien`, `id_goi_tap`, `id_phong_tap`, `ngay_su_dung`) VALUES
-(1, 2, 1, 2023-07-07),
-(1, 2, 2, 2023-07-08),
-(1, 2, 1, 2023-07-09),
-(1, 2, 3, 2023-07-10),
-(1, 2, 1, 2023-07-11),
-(2, 6, 1, 2023-07-07);
+(1, 2, 1, "2023-07-07"),
+(1, 2, 2, "2023-07-08"),
+(1, 2, 1, "2023-07-09"),
+(1, 2, 3, "2023-07-10"),
+(1, 2, 1, "2023-07-11"),
+(2, 6, 1, "2023-07-07"  );
 
 
 COMMIT;
