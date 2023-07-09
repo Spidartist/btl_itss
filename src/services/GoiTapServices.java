@@ -17,6 +17,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class GoiTapServices {
+    public static int getSoTienById(int id) throws SQLException {
+        String SELECT_QUERY = "SELECT `so_tien` FROM `goi_tap` WHERE id = ?";
+
+        PreparedStatement statement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("so_tien");
+            } else {
+                return 0;
+            }
+    }
 
 	public static ObservableList<GoiTap> getAllGoiTap() throws SQLException {
 

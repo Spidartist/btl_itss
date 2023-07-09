@@ -7,6 +7,83 @@
 
 }
 
+.text-field{
+	-fx-border-color: black;
+}
+
+.choice-box {
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+.choice-box .button {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+    -fx-padding: 0;
+}
+
+.choice-box .label {
+    -fx-text-fill: black;
+}
+
+.choice-box .arrow {
+    -fx-background-color: black;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #FCF7DE;
+    -fx-border-color: transparent;
+}
+
+.choice-box .context-menu .menu-item {
+    -fx-background-color: #FCF7DE;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+}
+
+.choice-box .context-menu .menu-item:hover {
+    -fx-background-color: #EBE1B9;
+}
+
+.choice-box:focused,
+.choice-box .button:focused,
+.choice-box .button:hover {
+    -fx-border-color: black; /* Replace 'red' with your desired color */
+}
+
+
+.combo-box:focused {
+    -fx-border-color: #EBE1B9;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #FCF7DE;
+    -fx-text-fill: black;
+    -fx-border-color: #EBE1B9;
+}
+
+.combo-box .list-cell:filled:selected,
+.combo-box .list-cell:filled:selected:hover {
+    -fx-background-color: #FCF7DE;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.date-picker-popup .text-field:showing:focused {
+    -fx-background-color: #FCF7DE;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.date-picker-popup .day-cell:hover,
+.date-picker-popup .date-cell:hover {
+    -fx-background-color: #FCF7DE;
+    -fx-text-fill: black;
+    -fx-border-color: #EBE1B9;
+}
+
 .button{
     -fx-background-color: #fff;
     -fx-text-fill: #333;
@@ -74,7 +151,7 @@
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
     -fx-background-color: #FCF7DE;
-    
+
     -fx-text-fill: #fff;
 } */
 
@@ -83,9 +160,9 @@
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
     -fx-border-color: #fc0404;
-    
+
     -fx-text-fill: #fc0404;
-    
+
 }
 
 
@@ -95,7 +172,7 @@
     -fx-border-color: #fc0404;
     -fx-background-color:#dab8b8 ;
     -fx-text-fill: #fc0404;
-    
+
 }
 
 .text-field{
@@ -103,6 +180,6 @@
     /* -fx-background-color:transparent; */
     -fx-font-family: Segoe UI;
     -fx-font-size: 14px;
-    -fx-font-style: italic; 
+    -fx-font-style: italic;
     /* -fx-border-color: #3f4d67; */
 }
