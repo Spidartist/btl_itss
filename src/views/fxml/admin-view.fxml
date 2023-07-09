@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.admin.AdminScreenHandler">
    <children>
       <HBox layoutX="-1.0">
          <children>
@@ -237,7 +237,7 @@
             </AnchorPane>
             <VBox>
                <children>
-                  <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f5f5f5;">
+                  <AnchorPane fx:id="basePane" prefHeight="718.0" prefWidth="800.0" style="-fx-background-color: #EBE1B9;">
                      <children>
                         <BarChart fx:id="facilityChart" barGap="2.0" categoryGap="8.0" layoutX="21.0" layoutY="203.0" prefHeight="332.0" prefWidth="471.0" stylesheets="@../styles/bar-chart.css" title="Thống kê">
                            <xAxis>
