@@ -124,7 +124,16 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
          }
          else {
          	try {
-         	    
+         	    // check exist
+         		boolean exist = GoiTapDaDangKiServices.checkExist(idHoiVien, idGoiTap);
+         		if (exist == true) {
+         	        createDialog(
+         	            Alert.AlertType.ERROR,
+         	            "Thất bại",
+         	            "", "Người dùng đã đăng kí gói tập này!"
+         	        );
+         	        return;
+         		}
          	    int result = GoiTapDaDangKiServices.addDangKi(ID, idHoiVien, idGoiTap, date);
          	    
          	    if (result == 1) {
@@ -219,8 +228,8 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
 	    // Add the strings to the ComboBox
 	    goiTapComboBox.setItems(getAllGoiTap(goiTapList));
 	    GoiTap selectedGoiTap = GoiTapServices.findGoiTap(goiTap.getIdGoiTap()).get(0);
-	    goiTapComboBox.setPromptText(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap());
-	    goiTapComboBox.setValue(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap());
+	    goiTapComboBox.setPromptText(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap() + " - " + selectedGoiTap.getLoaiGoiTap());
+	    goiTapComboBox.setValue(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap() + " - " + selectedGoiTap.getLoaiGoiTap());
     }
 
     private static ObservableList<String> getAllName(ObservableList<HoiVien> stringList) {
@@ -233,7 +242,7 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
     private static ObservableList<String> getAllGoiTap(ObservableList<GoiTap> stringList) {
     	ObservableList<String> goiTapList = FXCollections.observableArrayList();
         for (GoiTap gt : stringList) {
-        	goiTapList.add(gt.getId() + " - " + gt.getTenGoiTap());
+        	goiTapList.add(gt.getId() + " - " + gt.getTenGoiTap() + " - " + gt.getLoaiGoiTap());
         }
         return goiTapList;
     }
