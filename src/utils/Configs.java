@@ -36,6 +36,7 @@ public class Configs {
 	
 	
 	public static final String THONG_KE_SCREEN_PATH = "/views/fxml/thongke-view.fxml";
+	public static final String THAY_DOI_MAT_KHAU_SCREEN_PATH = "/views/fxml/thaydoimatkhau-view.fxml";
 	public static final String DANG_KI_USER_SCREEN_PATH = "/views/fxml/dangki-view.fxml";
 	
 	

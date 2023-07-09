@@ -28,6 +28,28 @@ public class ThuPhiServices {
 			return null; // or throw an exception, return a default value, etc.
 		}
 	}
+	
+	public static int getAllSumPhi() throws SQLException {
+		String SELECT_QUERY = "SELECT SUM(goi_tap.so_tien) AS doanh_thu from thu_phi JOIN goi_tap ON thu_phi.id_goi_tap = goi_tap.id";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+		ResultSet result = preparedStatement.executeQuery();
+
+		result.next();
+		return result.getInt("doanh_thu");
+	}
+	
+	public static int getSumPhi(String fromDate, String toDate) throws SQLException {
+		String SELECT_QUERY = "SELECT SUM(goi_tap.so_tien) AS doanh_thu from thu_phi JOIN goi_tap ON thu_phi.id_goi_tap = goi_tap.id\r\n"
+				+ "WHERE thu_phi.ngay_thu_phi >= ?\r\n"
+				+ "AND thu_phi.ngay_thu_phi <= ?";
+		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+		preparedStatement.setString(1, fromDate);
+		preparedStatement.setString(2, toDate);
+		ResultSet result = preparedStatement.executeQuery();
+
+		result.next();
+		return result.getInt("doanh_thu");
+	}
 
 	public static GoiTap getGoiTapById(int id) throws SQLException {
 		String SELECT_QUERY = "SELECT `ten_goi_tap` , `so_tien`  FROM `goi_tap` WHERE `id` = ?";

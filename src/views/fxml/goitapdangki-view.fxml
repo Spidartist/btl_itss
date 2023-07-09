@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.hoivien.HoiVienScreenHandler">
+<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.goitapdangki.GoiTapDaDangKiScreenHandler">
    <children>
-      <Text layoutX="38.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hội viên" textAlignment="CENTER" wrappingWidth="140.9140625">
+      <Text layoutX="33.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gói tập đã đăng kí" textAlignment="CENTER" wrappingWidth="213.9140625">
          <font>
             <Font name="Segoe UI" size="24.0" />
          </font>
@@ -22,11 +22,10 @@
       <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="577.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
-            <TableColumn fx:id="hoVaTenColumn" prefWidth="155.5" text="Họ và tên" />
-            <TableColumn fx:id="ngaySinhColumn" prefWidth="101.5" text="Ngày sinh" />
-            <TableColumn fx:id="loaiThanhVienColumn" prefWidth="106.0" text="Loại thành viên" />
-            <TableColumn fx:id="gioiTinhColumn" prefWidth="75.0" text="Giới tính" />
-            <TableColumn fx:id="ngheNghiepColumn" prefWidth="105.5" text="Nghề nghiệp" />
+            <TableColumn fx:id="hoVaTenColumn" prefWidth="175.5" text="Họ và tên hội viên" />
+            <TableColumn fx:id="tenGoiTapColumn" prefWidth="146.0" text="Tên gói tập" />
+            <TableColumn fx:id="loaiGoiTapColumn" prefWidth="110.5" text="Loại gói tập" />
+            <TableColumn fx:id="ngayDangKiColumn" prefWidth="112.5" text="Ngày đăng kí" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">
@@ -36,7 +35,7 @@
       </TextField>
       <VBox layoutX="634.0" layoutY="128.0" prefHeight="197.0" prefWidth="160.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#addHoiVien" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#addDangKiGoiTap" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -44,7 +43,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteHoiVien" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deleteDangKiGoiTap" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import views.screen.admin.AdminScreenHandler;
 import views.screen.dangki.DangKiScreenHandler;
 import views.screen.nhanvien.NhanVienDetailScreenHandler;
+import views.screen.thaydoimatkhau.ThayDoiMatKhauScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -138,11 +139,25 @@ public class ViewUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
         root = loader.load();
         AdminScreenHandler controller = loader.getController();
-        controller.switchToThuPhi();
+        controller.switchToPhanHoi();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
+	public void switchToGoiTapDaDangKi(ActionEvent event) throws IOException {
+	    Stage stage;
+        Scene scene;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ADMIN_SCREEN_PATH));
+        root = loader.load();
+        AdminScreenHandler controller = loader.getController();
+        controller.switchToGoiTapDaDangKi();
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+	}
 
 }

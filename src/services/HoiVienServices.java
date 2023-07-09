@@ -31,6 +31,40 @@ public class HoiVienServices {
         return hoiVienList;
     }
 	
+	
+	public static ObservableList<HoiVien> findHoiVien(int idHoiVien) throws SQLException {
+		ObservableList<HoiVien> hoiVienList = FXCollections.observableArrayList();
+
+		 String SELECT_QUERY =
+	                "SELECT * FROM hoi_vien " +
+	                        "WHERE ID =?";
+        PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, idHoiVien);
+        ResultSet result = preparedStatement.executeQuery();
+	        
+        while (result.next()) {
+        	hoiVienList.add(new HoiVien(result.getInt("id"), result.getString("ho_ten"),convertDate(result.getString("sinh_nhat")),
+        			result.getString("loai_thanh_vien"), result.getString("gioi_tinh"), result.getString("nghe_nghiep")));
+		}
+        
+        return hoiVienList;
+    }
+	
+    public static int getTotalHoiVien() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM hoi_vien";
+        try {
+            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+	
 	public static int addHoiVien(String hoVaTen, String ngaySinh, String gioiTinh, String loaiThanhVien, String ngheNghiep) throws SQLException {
 		
         String INSERT_QUERY = "INSERT INTO `hoi_vien`(`ho_ten`, `sinh_nhat`, `nghe_nghiep`, `gioi_tinh`, `loai_thanh_vien`) VALUES (?, ?, ?, ?, ?)";

@@ -28,6 +28,21 @@ public class PhongTapServices {
         return phongTapList;
     }
 	
+    public static int getTotalPhongTap() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM phong_tap";
+        try {
+            PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+	
 	
 	public static ObservableList<String> getTenAll() throws SQLException {
 		
