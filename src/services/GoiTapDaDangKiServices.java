@@ -57,6 +57,24 @@ public class GoiTapDaDangKiServices {
     }
 	
 	
+    public static boolean checkExist(int idHoiVien, int idGoiTap) throws SQLException {
+    	String sql = "SELECT * FROM dang_ki_goi_tap WHERE id_hoi_vien = ? AND id_goi_tap = ?";
+        boolean exists = false;
+
+        try (PreparedStatement statement = GymDB.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, idHoiVien);
+            statement.setInt(2, idGoiTap);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    exists = true;
+                }
+            }
+        }
+        return exists;
+
+    }
+	
     public static int addDangKi(int ID, int idHoiVien, int idGoiTap, String ngayDangKi) throws SQLException {
         String UPDATE_QUERY = "INSERT INTO `dang_ki_goi_tap`(`id_hoi_vien`, `id_goi_tap`, `ngay_dang_ki`) VALUES (?, ?, ?)";
         PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY); 
@@ -65,7 +83,6 @@ public class GoiTapDaDangKiServices {
         preparedStatement.setString(3, ngayDangKi);
         return preparedStatement.executeUpdate();
         
-    
     }
 
     
