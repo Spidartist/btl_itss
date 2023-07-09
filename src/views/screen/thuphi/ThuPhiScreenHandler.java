@@ -1,6 +1,17 @@
 package views.screen.thuphi;
 
-import entity.model.ThietBi;
+import static utils.Configs.DETAIL_THU_PHI_VIEW_FXML;
+import static utils.Configs.ROWS_PER_PAGE;
+import static utils.Configs.THIET_BI_SCREEN_PATH;
+import static utils.Utils.createDialog;
+import static utils.deAccent.removeAccent;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import entity.db.GymDB;
 import entity.model.ThuPhi;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -14,27 +25,35 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Pagination;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import services.ThietBiServices;
+import services.TaiKhoanServices;
 import services.ThuPhiServices;
 import utils.ViewUtils;
-import views.screen.thietbi.ThietBiDetailScreenHandler;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-import static utils.Configs.*;
-import static utils.Utils.createDialog;
-import static utils.deAccent.removeAccent;
 
 public class ThuPhiScreenHandler implements Initializable {
+	
+	private String role = GymDB.getUserPreferences().get("role", "");
+	private String username = GymDB.getUserPreferences().get("username", "");
+	
+    @FXML
+    private Button addBtn;
+    
+    @FXML
+    private Button deleteBtn;
 
     @FXML
     private AnchorPane basePane;
@@ -71,7 +90,16 @@ public class ThuPhiScreenHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            thuPhiList = ThuPhiServices.getAllThuPhi();
+        	int id_role = Integer.parseInt(role);
+			if (id_role != 5) {
+				thuPhiList = ThuPhiServices.getAllThuPhi();				
+			}else {
+				searchTextField.setVisible(false);
+				addBtn.setVisible(false);
+				deleteBtn.setVisible(false);
+				int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
+				thuPhiList = ThuPhiServices.getAllThuPhiUser(id_nguoi_dung);	
+			}
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();

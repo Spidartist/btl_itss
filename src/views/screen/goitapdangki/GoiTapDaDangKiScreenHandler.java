@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import entity.db.GymDB;
 import entity.model.GoiTapDaDangKi;
 import entity.model.GoiTapDaDangKi;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -26,6 +27,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
@@ -42,15 +44,26 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.GoiTapDaDangKiServices;
 import services.GoiTapServices;
+import services.TaiKhoanServices;
 import utils.ViewUtils;
 import views.screen.goitap.GoiTapDetailScreenHandler;
 import views.screen.goitapdangki.GoiTapDaDangKiDetailScreenHandler;
 
 @SuppressWarnings("unused")
 public class GoiTapDaDangKiScreenHandler implements Initializable{
+	
+	private String role = GymDB.getUserPreferences().get("role", "");
+	private String username = GymDB.getUserPreferences().get("username", "");
 
     @FXML
     private AnchorPane basePane;
+    
+
+    @FXML
+    private Button addBtn;
+    
+    @FXML
+    private Button deleteBtn;
 
     @FXML
     private TableColumn<GoiTapDaDangKi, String> hoVaTenColumn;
@@ -80,9 +93,18 @@ public class GoiTapDaDangKiScreenHandler implements Initializable{
     private ObservableList<GoiTapDaDangKi> goiTapList = FXCollections.observableArrayList();
 
     public void initialize(URL location, ResourceBundle resources) {
+    	
 		try {
-    		goiTapList = GoiTapDaDangKiServices.getAll();
-    		System.out.println(goiTapList);
+			int id_role = Integer.parseInt(role);
+			if (id_role != 5) {
+				goiTapList = GoiTapDaDangKiServices.getAll();
+			}else {
+				searchTextField.setVisible(false);
+				addBtn.setVisible(false);
+				deleteBtn.setVisible(false);
+				int id_nguoi_dung = TaiKhoanServices.getIDViaUsername(username);
+				goiTapList = GoiTapDaDangKiServices.getAllUser(id_nguoi_dung);
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -32,6 +32,25 @@ public class GoiTapDaDangKiServices {
 	    return goiTapList;
 	}
 	
+	public static ObservableList<GoiTapDaDangKi> getAllUser(int id_nguoi_dung) throws SQLException {
+
+	    ObservableList<GoiTapDaDangKi> goiTapList = FXCollections.observableArrayList();
+	    String SELECT_QUERY = "SELECT dkgt.id AS id, dkgt.id_hoi_vien AS idHoiVien, dkgt.id_goi_tap AS idGoiTap, hv.ho_ten AS ten_hoi_vien, gt.ten_goi_tap AS ten_goi_tap, gt.loai_goi_tap AS loai_goi_tap, dkgt.ngay_dang_ki AS ngay_dang_ki " +
+	                          "FROM dang_ki_goi_tap AS dkgt " +
+	                          "JOIN hoi_vien AS hv ON dkgt.id_hoi_vien = hv.id " +
+	                          "JOIN goi_tap AS gt ON dkgt.id_goi_tap = gt.id  WHERE hv.id = ?";
+	    PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(SELECT_QUERY);
+	    preparedStatement.setInt(1, id_nguoi_dung);
+	    ResultSet result = preparedStatement.executeQuery();
+
+	    while (result.next()) {
+	        String ngayDangKi = result.getDate("ngay_dang_ki").toString();
+	        goiTapList.add(new GoiTapDaDangKi(result.getInt("id"), result.getInt("idHoiVien"), result.getInt("idGoiTap"), result.getString("ten_hoi_vien"), result.getString("ten_goi_tap"), result.getString("loai_goi_tap"), ngayDangKi));
+	    }
+
+	    return goiTapList;
+	}
+	
 	public static ObservableList<ThongKeGoiTap> getAllCountDangKi() throws SQLException{
 		ObservableList<ThongKeGoiTap> thongKeList = FXCollections.observableArrayList();
 		String QUERY = "SELECT goi_tap.ten_goi_tap, goi_tap.loai_goi_tap, COUNT(goi_tap.id) AS so_luong FROM dang_ki_goi_tap JOIN goi_tap ON dang_ki_goi_tap.id_goi_tap = goi_tap.id GROUP BY goi_tap.id ";

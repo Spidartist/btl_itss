@@ -35,7 +35,7 @@
       </TextField>
       <VBox layoutX="634.0" layoutY="128.0" prefHeight="197.0" prefWidth="160.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#addDangKiGoiTap" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
+            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addDangKiGoiTap" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteDangKiGoiTap" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteDangKiGoiTap" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
