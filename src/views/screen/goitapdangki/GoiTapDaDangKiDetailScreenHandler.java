@@ -75,6 +75,14 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
 				e.printStackTrace();
 			}
         });
+        hoiVienComboBox.setOnAction(event -> {
+        	try {
+				set_ComboBox();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        });
     }
 
     private void search() throws SQLException {
@@ -216,17 +224,13 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
         hoiVienComboBox.setVisible(false);
         searchTextField.setText(goiTap.getHoTen());
         searchTextField.setEditable(false);
-//      ObservableList<HoiVien> stringList = HoiVienServices.getAllHoiVien();
-//	    hoiVienComboBox.setItems(getAllName(stringList));
-//	    HoiVien selectedOption = HoiVienServices.findHoiVien(goiTap.getIdHoiVien()).get(0);
-//	    hoiVienComboBox.setPromptText(selectedOption.getHoTen());
-//	    hoiVienComboBox.setValue(selectedOption.getHoTen());
-	    
-	//    goiTapComboBox.setItems();
+
+	             
 	    ObservableList<GoiTap> goiTapList = GoiTapServices.getAllGoiTap();
-	
+	    ObservableList<Integer> goiTapDaDangKiList = GoiTapDaDangKiServices.getGoiTapList(goiTap.getIdHoiVien());
 	    // Add the strings to the ComboBox
-	    goiTapComboBox.setItems(getAllGoiTap(goiTapList));
+	    
+	    goiTapComboBox.setItems(getAllGoiTap(goiTapList, goiTapDaDangKiList));
 	    GoiTap selectedGoiTap = GoiTapServices.findGoiTap(goiTap.getIdGoiTap()).get(0);
 	    goiTapComboBox.setPromptText(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap() + " - " + selectedGoiTap.getLoaiGoiTap());
 	    goiTapComboBox.setValue(selectedGoiTap.getId() + " - " + selectedGoiTap.getTenGoiTap() + " - " + selectedGoiTap.getLoaiGoiTap());
@@ -239,10 +243,13 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
         }
         return nameList;
     }
-    private static ObservableList<String> getAllGoiTap(ObservableList<GoiTap> stringList) {
+    private static ObservableList<String> getAllGoiTap(ObservableList<GoiTap> stringList, ObservableList<Integer> goiTapDaDangKiList) {
     	ObservableList<String> goiTapList = FXCollections.observableArrayList();
         for (GoiTap gt : stringList) {
-        	goiTapList.add(gt.getId() + " - " + gt.getTenGoiTap() + " - " + gt.getLoaiGoiTap());
+        	if (goiTapDaDangKiList.contains(gt.getId())) {
+            	goiTapList.add(gt.getId() + " - " + gt.getTenGoiTap() + " - " + gt.getLoaiGoiTap() + " - Đã đăng kí" );
+        	}
+        	else goiTapList.add(gt.getId() + " - " + gt.getTenGoiTap() + " - " + gt.getLoaiGoiTap());
         }
         return goiTapList;
     }
@@ -277,18 +284,22 @@ public class GoiTapDaDangKiDetailScreenHandler implements Initializable{
         LocalDate date = LocalDate.parse(dateString, pattern);
 
         ngayDangKiDatePicker.setValue(date);
+        
 		
 		ObservableList<HoiVien> stringList = HoiVienServices.getAllHoiVien();
 
 	    hoiVienComboBox.setItems(getAllName(stringList));
 //        hoiVienComboBox.setPromptText(selectedOption.getHoTen());
-        hoiVienComboBox.setValue(getAllName(stringList).get(0));
+        if (hoiVienComboBox.getValue() == null) hoiVienComboBox.setValue(getAllName(stringList).get(0));
         
         ObservableList<GoiTap> goiTapList = GoiTapServices.getAllGoiTap();
+    	int idHoiVien = Integer.parseInt(hoiVienComboBox.getValue().toString().strip().split(" - ")[0]);
 
-        goiTapComboBox.setItems(getAllGoiTap(goiTapList));
+	    ObservableList<Integer> goiTapDaDangKiList = GoiTapDaDangKiServices.getGoiTapList(idHoiVien);
+
+        goiTapComboBox.setItems(getAllGoiTap(goiTapList, goiTapDaDangKiList));
 //        goiTapComboBox.setPromptText(selectedGoiTap.getTenGoiTap());
-        goiTapComboBox.setValue(getAllGoiTap(goiTapList).get(0));
+        goiTapComboBox.setValue(getAllGoiTap(goiTapList, goiTapDaDangKiList).get(0));
 	}
 
 

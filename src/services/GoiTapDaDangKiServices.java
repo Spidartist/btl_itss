@@ -74,6 +74,21 @@ public class GoiTapDaDangKiServices {
         return exists;
 
     }
+    
+    public static ObservableList<Integer> getGoiTapList(int idHoiVien) throws SQLException {
+        String sql = "SELECT id_goi_tap FROM dang_ki_goi_tap WHERE id_hoi_vien = " + idHoiVien;
+        ObservableList<Integer> goiTapList = FXCollections.observableArrayList();
+
+        try (PreparedStatement statement = GymDB.getConnection().prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int idGoiTap = resultSet.getInt("id_goi_tap");
+                goiTapList.add(idGoiTap);
+            }
+        }
+        return goiTapList;
+
+    }
 	
     public static int addDangKi(int ID, int idHoiVien, int idGoiTap, String ngayDangKi) throws SQLException {
         String UPDATE_QUERY = "INSERT INTO `dang_ki_goi_tap`(`id_hoi_vien`, `id_goi_tap`, `ngay_dang_ki`) VALUES (?, ?, ?)";
