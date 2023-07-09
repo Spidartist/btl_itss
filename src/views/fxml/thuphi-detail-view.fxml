@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="435.0" prefWidth="518.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.thuphi.ThuPhiDetailScreenHandler">
+<AnchorPane prefHeight="435.0" prefWidth="518.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.thuphi.ThuPhiDetailScreenHandler">
    <children>
       <Button fx:id="update_btn" layoutX="233.0" layoutY="365.0" mnemonicParsing="false" onAction="#update" styleClass="btn" text="Cập nhật" textFill="WHITE">
          <font>
@@ -53,7 +53,7 @@
       </Text>
       <ComboBox fx:id="tenHoiVienComboBox" layoutX="184.0" layoutY="76.0" prefHeight="26.0" prefWidth="210.0" />
       <ComboBox fx:id="GoiTapComboBox" layoutX="184.0" layoutY="124.0" prefHeight="26.0" prefWidth="210.0" />
-      <Text layoutX="39.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đăng ký" textAlignment="CENTER" wrappingWidth="127.20000000000005">
+      <Text layoutX="39.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày thu phí" textAlignment="CENTER" wrappingWidth="127.20000000000005">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>

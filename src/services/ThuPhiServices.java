@@ -114,13 +114,14 @@ public class ThuPhiServices {
 		return thuPhiList;
 	}
 
-	public static int addThuPhi(int idHoiVien, int idGoiTap, String ngayThuPhi) throws SQLException {
+	public static int addThuPhi(int idHoiVien, int idGoiTap, String ngayThuPhi, int soTienDaThu) throws SQLException {
 
-		String INSERT_QUERY = "INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`) VALUES (?, ?, ?)";
+		String INSERT_QUERY = "INSERT INTO `thu_phi`(`id_hoi_vien`, `id_goi_tap`, `ngay_thu_phi`, `so_tien_da_thu`) VALUES (?, ?, ?, ?)";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(INSERT_QUERY);
 		preparedStatement.setInt(1, idHoiVien);
 		preparedStatement.setInt(2, idGoiTap);
 		preparedStatement.setString(3, ngayThuPhi);
+		preparedStatement.setInt(4, soTienDaThu);
 
 		return preparedStatement.executeUpdate();
 	}
@@ -133,13 +134,14 @@ public class ThuPhiServices {
 		return preparedStatement.executeUpdate();
 	}
 
-	public static int updateThuPhi(int ID, int idHoiVien, int idGoiTap, String ngayThuPh) throws SQLException {
-		String UPDATE_QUERY = "UPDATE `thu_phi` SET `id_hoi_vien`=?, `id_goi_tap`=?, `ngay_thu_phi`=? WHERE `id` = ?";
+	public static int updateThuPhi(int ID, int idHoiVien, int idGoiTap, String ngayThuPh, int soTienDaThu) throws SQLException {
+		String UPDATE_QUERY = "UPDATE `thu_phi` SET `id_hoi_vien`=?, `id_goi_tap`=?, `ngay_thu_phi`=?, `so_tien_da_thu`=? WHERE `id` = ?";
 		PreparedStatement preparedStatement = GymDB.getConnection().prepareStatement(UPDATE_QUERY);
 		preparedStatement.setInt(1, idHoiVien);
 		preparedStatement.setInt(2, idGoiTap);
 		preparedStatement.setString(3, ngayThuPh);
-		preparedStatement.setInt(4, ID);
+		preparedStatement.setInt(4, soTienDaThu);
+		preparedStatement.setInt(5, ID);
 		preparedStatement.execute();
 		return preparedStatement.executeUpdate();
 	}

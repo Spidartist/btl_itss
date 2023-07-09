@@ -67,6 +67,7 @@ public class ThuPhiDetailScreenHandler implements Initializable {
         soTienTextField.setText(soTien);
         tenHoiVienComboBox.setValue(thuPhi.getTenHoiVien());
         ngayThuPhiDatePicker.setValue(LOCAL_DATE(thuPhi.getNgayThuPhi()));
+        soTienTextField.setEditable(false);
         String tenGoiTap = thuPhi.getTenGoiTap();
         String loaiGoiTap = thuPhi.getLoaiGoiTap();
         int goiTapId = 0;
@@ -104,6 +105,7 @@ public class ThuPhiDetailScreenHandler implements Initializable {
                 int newMoneyValue = 0;
                 try {
                     newMoneyValue = GoiTapServices.getSoTienById(newIdGoiTap);
+                    System.out.println(newMoneyValue);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -144,7 +146,7 @@ public class ThuPhiDetailScreenHandler implements Initializable {
                         "", "Vui lòng nhập đủ thông tin!");
             } else {
                 try {
-                    int result = ThuPhiServices.addThuPhi(id_hoi_vien,id_goi_tap,ngayThuPhi);
+                    int result = ThuPhiServices.addThuPhi(id_hoi_vien,id_goi_tap,ngayThuPhi, Integer.parseInt(soTien));
                     if (result == 1) {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
@@ -192,7 +194,7 @@ public class ThuPhiDetailScreenHandler implements Initializable {
                 createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng nhập đủ thông tin!");
             } else {
                 try {
-                    int result = ThuPhiServices.updateThuPhi(ID, id_hoi_vien, id_goi_tap, ngayThuPhi);
+                    int result = ThuPhiServices.updateThuPhi(ID, id_hoi_vien, id_goi_tap, ngayThuPhi, Integer.parseInt(soTienTextField.getText()));
                     if (result == 1) {
                         createDialog(Alert.AlertType.CONFIRMATION, "Thành công", "", "Cập nhật thu phí thành công!");
                     } else {
